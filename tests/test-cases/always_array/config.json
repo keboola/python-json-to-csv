@@ -1,0 +1,40 @@
+{
+  "parent_table": {
+    "users": "users.csv"
+  },
+  "child_tables": {
+    "users.products_owned": "products_owned.csv"
+  },
+  "table_primary_keys": {
+    "users": [
+      "users.id"
+    ],
+    "users.products_owned": [
+      "users.id",
+      "users.products_owned.id"
+    ]
+  },
+  "table_column_mapping": {
+    "users": {
+      "users.id": "user_id",
+      "users.name": "name",
+      "users.last_name": "last_name"
+    },
+    "users.products_owned": {
+      "users.id": "user_id",
+      "users.products_owned.id": "product_id",
+      "users.products_owned.owned_since": "owned_since",
+      "users.products_owned.product_aliases.0": "product_alias_0"
+    }
+  },
+  "root_node": "data.users",
+  "file_name": "input.json",
+  "ignore_undefined_tables": false,
+  "ignore_undefined_columns": true,
+  "parse_list_mapping": {
+    "users.products_owned.product_aliases": "TO_COLUMNS"
+  },
+  "always_array": [
+    "users.addresses"
+  ]
+}

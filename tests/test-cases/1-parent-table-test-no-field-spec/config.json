@@ -1,0 +1,12 @@
+{
+  "parent_table": {
+    "order": "order.csv"
+  },
+  "table_primary_keys": {
+    "order": [
+      "order.id"
+    ]
+  },
+  "root_node": "root_el.orders.order",
+  "file_name": "input.json"
+}

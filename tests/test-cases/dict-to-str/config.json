@@ -1,0 +1,27 @@
+{
+  "parent_table": {
+    "users": "users.csv"
+  },
+  "child_tables": {
+    "users.products_owned": "products_owned.csv"
+  },
+  "table_primary_keys": {
+    "users": [
+      "users.id"
+    ]
+  },
+  "table_column_mapping": {
+    "users": {
+      "users.id": "user_id",
+      "users.name": "name",
+      "users.last_name": "last_name",
+      "users.address": "address"
+    }
+  },
+  "root_node": "data.users",
+  "file_name": "input.json",
+  "ignore_undefined_columns" : true,
+    "parse_dict_mapping": {
+    "users.address": "TO_STR"
+  }
+}

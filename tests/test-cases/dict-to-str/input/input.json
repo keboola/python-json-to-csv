@@ -1,0 +1,26 @@
+{
+  "data": {
+      "users": [
+        {
+          "id": "0391403941",
+          "name": "Adam",
+          "last_name": "Bako",
+          "birthday": "1975-01-01",
+          "address" : {
+            "street" : "MyStreet",
+            "number" : 2
+          }
+        },
+        {
+          "id": "23948249",
+          "name": "Lukas",
+          "last_name": "Gulas",
+          "birthday": "1905-01-01",
+          "address" : {
+            "street" : "MyStreet2",
+            "number" : 4
+          }
+        }
+      ]
+  }
+}
