@@ -235,10 +235,8 @@ class JSONParser:
         if not data:
             raise MissingDataException()
 
-        # TODO turn dict to list
         if not isinstance(data, List):
-            raise JSONParserError(
-                "Invalid root node. Data extracted from JSON using the root node should be a list of dictionaries.")
+            return [data]
         return data
 
     # TODO rename to something more understandable
