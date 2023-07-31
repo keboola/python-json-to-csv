@@ -377,7 +377,7 @@ class Analyzer:
             force_types.extend(child_force_types)
             primary_keys.extend(child_primary_keys)
         return {"table_name": table_name,
-                "columns": columns,
+                "column_mappings": columns,
                 "primary_keys": primary_keys,
                 "force_types": force_types,
                 "child_tables": child_tables}
@@ -434,7 +434,7 @@ class Analyzer:
         if "node" in node_data:
             node_type = node_data.get("node").data_type
             if node_type == NodeType.SCALAR:
-                headers[".".join(node_data.get("node").path)] = node_data.get("node").header_name
+                headers[".".join(node_data.get("node").path)] = node_data.get("node").header_name.replace(".", "_")
 
         for node_name, data in node_data.get("children").items():
             if data.get("node").data_type == NodeType.DICT:
@@ -443,7 +443,7 @@ class Analyzer:
             elif data.get("node").data_type == NodeType.LIST:
                 continue
             else:
-                headers[".".join(data.get("node").path)] = data.get("node").header_name
+                headers[".".join(data.get("node").path)] = data.get("node").header_name.replace(".", "_")
 
         return headers
 

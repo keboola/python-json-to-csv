@@ -96,8 +96,7 @@ class JSONCaseTester(unittest.TestCase):
                 test_passed = False
         return test_passed
 
-    @staticmethod
-    def _compare_table_columns(expected_data, real_data):
+    def _compare_table_columns(self, expected_data, real_data):
         test_passed = True
         for data_name in real_data:
             real_keys = set(chain.from_iterable(real_data[data_name]))

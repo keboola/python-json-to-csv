@@ -319,7 +319,7 @@ class Parser:
         for child_node in children_nodes:
             if children_nodes.get(child_node).get("node").is_primary_key:
                 # TODO FIX WHEN ID IS NESTED e.g. some_dict.id
-                name = "_".join([self.main_table_name] + node_path + [child_node])
+                name = ".".join([self.main_table_name] + node_path + [child_node])
                 current_table_primary_keys[name] = data_row.get(child_node)
 
         return current_table_primary_keys
