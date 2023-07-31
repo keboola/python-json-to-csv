@@ -1,0 +1,33 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "first_name": "Emma",
+      "last_name": "Johnson",
+      "owned_items": [
+        {
+          "item": {
+            "name": "Macbook Pro",
+            "properties": {
+              "storage" : "100GB",
+              "chip" : {
+                "apple_silicon" : true,
+                "name" : "M1-Pro",
+                "manufacturer": {
+                  "name" : "some factory"
+                }
+              },
+              "color" : "gray"
+            }
+          },
+          "owned_since": "2022-01-10"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "first_name": "Joe",
+      "last_name": "Maxey"
+    }
+  ]
+}

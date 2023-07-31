@@ -1,0 +1,5 @@
+JSON_parentId,type,properties_street,properties_city,properties_address,properties_state,properties_number,primary
+users_08d9ef8753192e61272f3dae5984ebdb,address,Elm Street,New York,,,,
+users_08d9ef8753192e61272f3dae5984ebdb,email,,,john.doe@example.com,,,True
+users_8712f496912fc51ce08a3afaa1739136,address,Bates Street,Chicago,,USA,,False
+users_8712f496912fc51ce08a3afaa1739136,phone,,,,,123 456 789,True

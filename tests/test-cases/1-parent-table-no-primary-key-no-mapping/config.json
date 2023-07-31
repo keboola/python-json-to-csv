@@ -1,7 +1,0 @@
-{
-  "parent_table": {
-    "users": "user.csv"
-  },
-  "root_node": "data.users",
-  "file_name": "input.json"
-}

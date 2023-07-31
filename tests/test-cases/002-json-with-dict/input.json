@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "first_name": "Emma",
+      "last_name": "Johnson",
+      "age": 28,
+      "address": {
+        "street": "Cypress Lane",
+        "street_num": "456",
+        "city": "Phoenix",
+        "postal_code": "85001"
+      }
+    }
+  ]
+}

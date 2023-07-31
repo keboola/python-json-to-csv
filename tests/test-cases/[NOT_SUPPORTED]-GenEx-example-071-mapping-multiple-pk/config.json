@@ -1,0 +1,32 @@
+{
+  "root_node": null,
+  "table_name": "users",
+  "legacy_mapping": {
+    "users": {
+      "firstName": {
+        "mapping": {
+          "destination": "first_name",
+          "primaryKey": true
+        }
+      },
+      "lastName": {
+        "mapping": {
+          "destination": "last_name",
+          "primaryKey": true
+        }
+      },
+      "interests": {
+        "type": "table",
+        "destination": "interests",
+        "tableMapping": {
+          ".": {
+            "type": "column",
+            "mapping": {
+              "destination": "interest"
+            }
+          }
+        }
+      }
+    }
+  }
+}
