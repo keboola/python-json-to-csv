@@ -434,7 +434,7 @@ class Analyzer:
         if "node" in node_data:
             node_type = node_data.get("node").data_type
             if node_type == NodeType.SCALAR:
-                headers[".".join(node_data.get("node").path)] = node_data.get("node").header_name.replace(".", "_")
+                headers[".".join(node_data.get("node").path)] = node_data.get("node").header_name
 
         for node_name, data in node_data.get("children").items():
             if data.get("node").data_type == NodeType.DICT:
@@ -443,7 +443,7 @@ class Analyzer:
             elif data.get("node").data_type == NodeType.LIST:
                 continue
             else:
-                headers[".".join(data.get("node").path)] = data.get("node").header_name.replace(".", "_")
+                headers[".".join(data.get("node").path)] = data.get("node").header_name
 
         return headers
 

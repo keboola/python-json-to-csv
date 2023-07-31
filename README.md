@@ -18,3 +18,7 @@ The parser in JSON-to-CSV operates in three main steps. First, it analyzes the J
 pip install keboola.json-to-csv
 ```
 
+### Usage
+
+See Examples folder for usage
+
