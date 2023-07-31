@@ -1,1 +1,2 @@
-from .json_parser import JSONParser, JSONParserError  # noqa
+from .mapping import TableMapping
+from .parser import Parser

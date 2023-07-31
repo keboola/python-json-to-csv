@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "first_name": "Emma",
+      "last_name": "Johnson",
+      "age": 28,
+      "address": [{
+        "street": "Walnut Avenue",
+        "street_num": "159",
+        "city": "Miami",
+        "postal_code": "33101"
+      }]
+    },
+    {
+      "id": "2",
+      "first_name": "Joe",
+      "last_name": "Maxey",
+      "age": 12,
+      "address": [{
+        "street": "Cypress Lane",
+        "street_num": "456",
+        "city": "Phoenix",
+        "postal_code": "85001"
+      }]
+    }
+  ]
+}

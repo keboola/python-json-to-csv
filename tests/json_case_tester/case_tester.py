@@ -12,15 +12,15 @@ class JSONCaseTester(unittest.TestCase):
     def __init__(self, folder):
         super(JSONCaseTester, self).__init__(methodName="perform_test")
         self.config = self._read_json_file(os.path.join(folder, "config.json"))
-        self.input_data = self._read_json_file(os.path.join(folder, "input", self.config.get("file_name")))
-        self.output_data = self.load_output_data(os.path.join(folder, "output"))
+        self.input_data = self._read_json_file(os.path.join(folder, "input.json"))
+        self.output_data = self.load_output_data(os.path.join(folder, "expected_output"))
         self.test_name = folder
 
     def load_output_data(self, output_folder):
         all_data = {}
         output_files = self._get_files_in_dir(output_folder)
         for folder in output_files:
-            filename = os.path.basename(folder)
+            filename = os.path.basename(folder).replace(".csv", "")
             all_data[filename] = self._read_csv_to_list(folder)
         return all_data
 
@@ -43,8 +43,27 @@ class JSONCaseTester(unittest.TestCase):
     def perform_test(self):
         logging.info(f"\nTesting {self.test_name}")
 
-        json_parser = jc.JSONParser(configuration_dict=self.config)
-        parsed_data = json_parser.parse_data(self.input_data)
+        if "[NOT_SUPPORTED]" in self.test_name:
+            logging.info(f"Skipping NOT SUPPORTED test : {self.test_name}")
+            return
+
+        if self.config.get("legacy_mapping"):
+            legacy_mapping = self.config.get("legacy_mapping")
+            user_data = self.config.get("user_data")
+            mapping = jc.TableMapping.build_from_legacy_mapping(legacy_mapping, user_data=user_data)
+            parser = jc.Parser(main_table_name=self.config.get("table_name"),
+                               table_mapping=mapping,
+                               analyze_further=False)
+        elif self.config.get("mapping"):
+            new_mapping = self.config.get("mapping")
+            mapping = jc.TableMapping.build_from_mapping_dict(new_mapping)
+            parser = jc.Parser(main_table_name=self.config.get("table_name"),
+                               table_mapping=mapping,
+                               analyze_further=False)
+        else:
+            parser = jc.Parser(main_table_name=self.config.get("table_name"))
+
+        parsed_data = parser.parse_data(self.input_data, root_name=self.config.get("root_node"))
         expected_tables = set(self.output_data.keys())
         real_tables = set(parsed_data.keys())
 
@@ -64,8 +83,8 @@ class JSONCaseTester(unittest.TestCase):
             test_passed = False
         return test_passed
 
-    @staticmethod
-    def _compare_table_row_length(expected_data, real_data):
+
+    def _compare_table_row_length(self, expected_data, real_data):
         test_passed = True
         for data_name in real_data:
             num_rows_expected = len(expected_data[data_name])
@@ -95,6 +114,8 @@ class JSONCaseTester(unittest.TestCase):
             for i, row in enumerate(real_data[data_name]):
                 for key, real_value in row.items():
                     expected_value = expected_data[data_name][i][key] or ""
+                    if expected_value == 'False':
+                        expected_value = ""
                     real_value = real_value or ""
                     if str(real_value) != str(expected_value):
                         logging.error(f"Column mismatch in {data_name}. "

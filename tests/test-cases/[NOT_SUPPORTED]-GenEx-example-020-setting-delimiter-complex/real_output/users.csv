@@ -1,0 +1,3 @@
+id,name,primary.address_street,primary.address_city,primary.address_tags,primary.address_state,secondary.address_street,secondary.address_city,secondary.address_tags,secondary.address_state
+123,John Doe,Elm Street,New York,users.primary.address_29ec9775ee6eb8e29eba998ad8fe3d87,,Cemetery Ridge,New York,users.secondary.address_81fcff2276712198e20de1367dada1a2,
+234,Jane Doe, Blossom Avenue,,users.primary.address_8669aa264189d3fa1a97944f80164d02,U.K.,1313 Webfoot Walk,Duckburg,,Calisota

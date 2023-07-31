@@ -1,0 +1,33 @@
+{
+  "root_node": null,
+  "table_name": "users",
+  "legacy_mapping": {
+    "users": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id"
+        }
+      },
+      "name": {
+        "type": "column",
+        "mapping": {
+          "destination": "name"
+        }
+      },
+      "favoriteColors": {
+        "type": "column",
+        "mapping": {
+          "destination": "colors"
+        }
+      },
+      "children": {
+        "type": "table",
+        "destination": "users",
+        "parentKey": {
+          "disable": true
+        }
+      }
+    }
+  }
+}

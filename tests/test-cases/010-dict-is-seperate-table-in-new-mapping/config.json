@@ -1,0 +1,30 @@
+{
+  "root_node": "user",
+  "table_name": "user",
+  "mapping": {
+    "table_name": "user",
+    "column_mappings": {
+      "id": "id",
+      "first_name": "first_name",
+      "last_name": "last_name"
+    },
+    "primary_keys": [
+      "id"
+    ],
+    "force_types": [],
+    "child_tables": {
+      "address": {
+        "table_name": "user_addresses",
+        "column_mappings": {
+          "street": "street",
+          "street_num": "street_num",
+          "city": "city",
+          "postal_code": "postal_code"
+        },
+        "primary_keys": [
+        ],
+        "force_types": [],
+        "child_tables": {}
+      }
+    }
+  }}

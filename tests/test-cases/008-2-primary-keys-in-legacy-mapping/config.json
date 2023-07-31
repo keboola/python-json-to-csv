@@ -1,0 +1,51 @@
+{
+  "root_node": "user",
+  "table_name": "user",
+  "legacy_mapping": {
+    "user": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "user_id",
+          "primaryKey": true
+        }
+      },
+      "first_name": {
+        "type": "column",
+        "mapping": {
+          "destination": "first_name",
+          "primaryKey": true
+        }
+      },
+      "last_name": {
+        "type": "column",
+        "mapping": {
+          "destination": "last_name"
+        }
+      },
+      "address": {
+        "type": "table",
+        "tableMapping": {
+          "street": {
+            "type": "column",
+            "mapping": {
+              "destination": "street"
+            }
+          },
+          "street_num": {
+            "type": "column",
+            "mapping": {
+              "destination": "street_num"
+            }
+          },
+          "city": {
+            "type": "column",
+            "mapping": {
+              "destination": "city"
+            }
+          }
+        }
+      }
+    }
+  }
+}

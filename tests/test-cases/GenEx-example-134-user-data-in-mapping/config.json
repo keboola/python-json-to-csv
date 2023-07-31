@@ -1,0 +1,29 @@
+{
+  "root_node": null,
+  "table_name": "users",
+  "user_data": {
+    "country": "UK"
+  },
+  "legacy_mapping": {
+    "users": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id"
+        }
+      },
+      "name": {
+        "type": "column",
+        "mapping": {
+          "destination": "name"
+        }
+      },
+      "country": {
+        "type": "user",
+        "mapping": {
+          "destination": "country"
+        }
+      }
+    }
+  }
+}

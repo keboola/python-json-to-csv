@@ -1,0 +1,1 @@
+{"users": [{"id": 123, "name": "John Doe"}, {"id": 234, "name": "Jane Doe"}], "userTypes": ["member", "guest"]}
