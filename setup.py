@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="keboola.json-to-csv",
-    version="0.0.7",
+    version="0.0.8",
     author="Keboola KDS Team",
     setup_requires=['flake8'],
     tests_require=[],
