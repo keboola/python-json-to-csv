@@ -63,20 +63,24 @@ class TableMapping:
 
         child_tables = {}
 
-        for node_id in legacy_mapping.get(table_name):
-            if legacy_mapping.get(table_name).get(node_id).get("type") == "column" or not legacy_mapping.get(
-                    table_name).get(node_id).get("type"):
+        for node_id, node in legacy_mapping.get(table_name).items():
+            # if the value is string it is a simplified column mapping
+            if isinstance(node, str) or node.get("type") == "column" or not node.get("type"):
                 raw_name = node_id
-                destination_name = legacy_mapping.get(table_name).get(node_id).get("mapping").get("destination")
+                destination_name = node if isinstance(node, str) else node.get("mapping").get("destination")
                 column_mappings[raw_name] = destination_name
-                if legacy_mapping.get(table_name).get(node_id).get("mapping").get("primaryKey"):
-                    primary_keys.append(raw_name)
-                if legacy_mapping.get(table_name).get(node_id).get("forceType"):
-                    force_types.append(raw_name)
-            if legacy_mapping.get(table_name).get(node_id).get("type") == "table":
-                child_mapping = {node_id: legacy_mapping.get(table_name).get(node_id).get("tableMapping")}
-                child_table_mapping = cls.build_from_legacy_mapping(child_mapping)
-                child_tables[node_id] = child_table_mapping
+
+            # it is not simplified mapping
+            if isinstance(node, dict):
+                if node.get("type") == "column":
+                    if node.get("mapping").get("primaryKey"):
+                        primary_keys.append(raw_name)
+                    if node.get("forceType"):
+                        force_types.append(raw_name)
+                if node.get("type") == "table":
+                    child_mapping = {node_id: node.get("tableMapping")}
+                    child_table_mapping = cls.build_from_legacy_mapping(child_mapping)
+                    child_tables[node_id] = child_table_mapping
 
         return cls(table_name=table_name,
                    column_mappings=column_mappings,
