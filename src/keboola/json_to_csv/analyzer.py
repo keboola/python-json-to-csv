@@ -231,7 +231,7 @@ class Analyzer:
         self._process_user_data_mappings(table_mapping, parent_path)
         self._process_child_table_mappings(table_mapping, parent_path)
 
-    def get_node_dict(self, mergepath_to_object: List) -> Dict:
+    def get_node_dict(self, path_to_object: List) -> Dict:
         if len(path_to_object) > 0:
             node = self.node_hierarchy.get("children").get(path_to_object[0], {})
         else:
