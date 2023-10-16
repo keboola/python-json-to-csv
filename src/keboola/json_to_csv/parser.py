@@ -77,29 +77,35 @@ class Parser:
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
 
-    def get_table_mapping(self):
+    def get_table_mapping(self) -> Dict:
         """
         Get the table mapping used by the parser.
 
         Returns:
-            TableMapping: The table mapping used by the parser.
+            Dict: The table mapping used by the parser.
         """
         return self.analyzer.get_mapping_dict_fom_structure()
 
-    def get_table_mapping_as_dict(self) -> Dict:
+    def get_mapping_by_object_path(self, path: Optional[str] = None, separator: str = ".") -> Dict:
         """
-        Retrieves the table mapping structure used by the parser in a dictionary format.
+        Retrieve a flattened representation of the mapping structure based on a specified object path.
+        Primarily meant for debugging purposes.
 
-        This method provides a flattened representation of the table mapping. Each key
-        represents a table name (e.g., "user" or "user_addresses") and its corresponding
-        value holds the mapping details for that table. Child tables are prefixed based
-        on their parent table names.
+        Parameters:
+        - path (Optional[str]): The object path for which the mapping should be retrieved.
+                                If None, the full flattened mapping is returned.
+        - separator (str): The separator used to delimit table names in the flattened representation.
+                           Default is '.'.
 
         Returns:
-            Dict[str, Dict]: A dictionary with table names as keys and associated mapping
-                             configurations as values.
+        - Dict: Flattened representation of the mapping structure.
         """
-        return self.table_mapping.to_dict()
+        full_mapping = self._flatten_mapping(self.analyzer.get_mapping_dict_fom_structure(), separator)
+
+        if path:
+            return {k: v for k, v in full_mapping.items() if k.startswith(path)}
+
+        return full_mapping
 
     def analyze_data(self, input_data: List[Dict], node_path: Optional[List[str]] = None) -> Dict[str, Table]:
         """
@@ -338,3 +344,14 @@ class Parser:
                 current_table_primary_keys[name] = data_row.get(child_node)
 
         return current_table_primary_keys
+
+    def _flatten_mapping(self, mapping: Dict, separator: str, current_path: str = "") -> Dict:
+        flat_mappings = {}
+        table_name = mapping.get('table_name', "")
+        new_path = current_path + separator + table_name if current_path else table_name
+        flat_mappings[new_path] = dict(mapping)  # Shallow copy of the mapping
+
+        for _, child_mapping in mapping.get('child_tables', {}).items():
+            flat_mappings.update(self._flatten_mapping(child_mapping, separator, new_path))
+
+        return flat_mappings

@@ -13,43 +13,79 @@ data = [
             {
                 "index": 1,
                 "street": "Blossom Avenue",
-                "country": "United Kingdom"
+                "country": "United Kingdom",
+                "coordinates": {
+                    "latitude": 51.509865,
+                    "longitude": -0.118092
+                }
             },
             {
                 "index": 2,
                 "street": "Whiteheaven Mansions",
                 "city": "London",
-                "country": "United Kingdom"
+                "country": "United Kingdom",
+                "coordinates": {
+                    "latitude": 51.509865,
+                    "longitude": -0.118092
+                }
             }
         ]
     }
 ]
 
-mapping_dict = {'table_name': 'user',
-                'column_mappings': {'id': 'id',
-                                    'name': 'name',
-                                    'details.weight': 'user_weight',
-                                    'details.height': 'user_height',
-                                    'details.hair_color': 'user_hair_color'},
-                'primary_keys': ['id'],
-                'force_types': [],
-                'child_tables': {
-                    'addresses': {'table_name': 'addresses',
-                                  'column_mappings': {
-                                      'user_id': 'user_id',
-                                      'index': 'index',
-                                      'street': 'street',
-                                      'country': 'country',
-                                      'city': 'city'},
-                                  'primary_keys': ['user_id', 'index'],
-                                  'force_types': [],
-                                  'child_tables': {}}}}
+
+mapping_dict = {
+    'table_name': 'user',
+    'column_mappings': {
+        'id': 'id',
+        'name': 'name',
+        'details.weight': 'user_weight',
+        'details.height': 'user_height',
+        'details.hair_color': 'user_hair_color'
+    },
+    'primary_keys': ['id'],
+    'force_types': [],
+    'child_tables': {
+        'addresses': {
+            'table_name': 'addresses',
+            'column_mappings': {
+                'user_id': 'user_id',
+                'index': 'index',
+                'street': 'street',
+                'country': 'country',
+                'city': 'city'
+            },
+            'primary_keys': ['user_id', 'index'],
+            'force_types': [],
+            'child_tables': {
+                'coordinates': {
+                    'table_name': 'coordinates',
+                    'column_mappings': {
+                        'latitude': 'latitude',
+                        'longitude': 'longitude'
+                    },
+                    'primary_keys': [],
+                    'force_types': [],
+                    'child_tables': {}
+                }
+            }
+        }
+    }
+}
+
 
 mapping = TableMapping.build_from_mapping_dict(mapping_dict)
-parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=False)
+parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
 parsed_data = parser.parse_data(data)
 
-table_mappings = parser.get_table_mapping_as_dict()
-for table_name, table_mapping in table_mappings.items():
-    print(f"Table name: {table_name}")
-    print(table_mapping)
+# Get user.addresses mapping KCOFAC-2624 - flatten result for debugging
+print(parser.get_mapping_by_object_path())
+print(parser.get_mapping_by_object_path("user.addresses"))
+
+
+# KCOFAC-2623 - store mapping in statefile
+table_mappings = parser.get_table_mapping()
+mapping = TableMapping.build_from_mapping_dict(table_mappings)
+parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
+parsed = parser.parse_data(data)
+print(parsed)
