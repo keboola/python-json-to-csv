@@ -86,6 +86,21 @@ class Parser:
         """
         return self.analyzer.get_mapping_dict_fom_structure()
 
+    def get_table_mapping_as_dict(self) -> Dict:
+        """
+        Retrieves the table mapping structure used by the parser in a dictionary format.
+
+        This method provides a flattened representation of the table mapping. Each key
+        represents a table name (e.g., "user" or "user_addresses") and its corresponding
+        value holds the mapping details for that table. Child tables are prefixed based
+        on their parent table names.
+
+        Returns:
+            Dict[str, Dict]: A dictionary with table names as keys and associated mapping
+                             configurations as values.
+        """
+        return self.table_mapping.to_dict()
+
     def analyze_data(self, input_data: List[Dict], node_path: Optional[List[str]] = None) -> Dict[str, Table]:
         """
         Analyze input data and return a dictionary of Table objects.

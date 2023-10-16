@@ -27,10 +27,10 @@ data = [
 
 mapping_dict = {'table_name': 'user',
                 'column_mappings': {'id': 'id',
-                            'name': 'name',
-                            'details.weight': 'user_weight',
-                            'details.height': 'user_height',
-                            'details.hair_color': 'user_hair_color'},
+                                    'name': 'name',
+                                    'details.weight': 'user_weight',
+                                    'details.height': 'user_height',
+                                    'details.hair_color': 'user_hair_color'},
                 'primary_keys': ['id'],
                 'force_types': [],
                 'child_tables': {
@@ -48,3 +48,8 @@ mapping_dict = {'table_name': 'user',
 mapping = TableMapping.build_from_mapping_dict(mapping_dict)
 parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=False)
 parsed_data = parser.parse_data(data)
+
+table_mappings = parser.get_table_mapping_as_dict()
+for table_name, table_mapping in table_mappings.items():
+    print(f"Table name: {table_name}")
+    print(table_mapping)

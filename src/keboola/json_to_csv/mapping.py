@@ -112,3 +112,16 @@ class TableMapping:
                    child_tables=child_tables,
                    force_types=mapping.get("force_types"),
                    user_data=mapping.get("user_data", {}))
+
+    def to_dict(self, parent_name=None) -> Dict:
+        current_table_name = f"{parent_name}_{self.table_name}" if parent_name else self.table_name
+        items = {current_table_name: {
+            'table_name': self.table_name,
+            'column_mappings': self.column_mappings,
+            'primary_keys': self.primary_keys,
+            'force_types': self.force_types,
+            'user_data': self.user_data
+        }}
+        for k, v in self.child_tables.items():
+            items.update(v.to_dict(parent_name=current_table_name))
+        return items
