@@ -50,7 +50,7 @@ class Analyzer:
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
 
-    def get_mapping_dict_fom_structure(self) -> dict:
+    def get_mapping_dict_fom_structure(self) -> Dict:
         return self._get_table_mapping_of_node_hierarchy()
 
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -> None:
@@ -361,7 +361,7 @@ class Analyzer:
             self.add_node(path, NodeType.LIST)
             self.update_with_table_mapping(table_mapping.child_tables.get(child_table), path)
 
-    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None):
+    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None) -> Dict:
         if not node_hierarchy:
             node_hierarchy = self.node_hierarchy
         table_name = node_hierarchy.get("node").header_name
@@ -376,7 +376,6 @@ class Analyzer:
             child_tables.update(child_child_tables)
             force_types.extend(child_force_types)
             primary_keys.extend(child_primary_keys)
-
         return {"table_name": table_name,
                 "column_mappings": columns,
                 "primary_keys": primary_keys,
@@ -396,15 +395,37 @@ class Analyzer:
                 force_types.append(child_name)
             if child_node.is_primary_key:
                 primary_keys.append(child_name)
-        if child_node.data_type in [NodeType.LIST, NodeType.LIST_OF_SCALARS, NodeType.LIST_OF_DICTS, NodeType.DICT]:
+        if child_node.data_type in [NodeType.LIST, NodeType.LIST_OF_SCALARS, NodeType.LIST_OF_DICTS]:
             child_tables[child_name] = self._get_table_mapping_of_node_hierarchy(
                 node_hierarchy=node_hierarchy.get("children").get(child_name))
         if child_node.data_type == NodeType.DICT:
-            columns.update(child_tables[child_name]['column_mappings'])
-            child_tables.update(child_tables[child_name]['child_tables'])
-            force_types.extend(child_tables[child_name]['force_types'])
-            primary_keys.extend(child_tables[child_name]['primary_keys'])
+            child_columns, child_child_tables, child_primary_keys, child_force_types = self._get_table_mapping_of_dict_node(
+                node_hierarchy.get("children").get(child_name))
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
 
+        return columns, child_tables, primary_keys, force_types
+
+    def _get_table_mapping_of_dict_node(self, node_thing):
+        dict_node_name = node_thing.get("node").data_name
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+        for child in node_thing.get("children"):
+            child_columns, child_child_tables, child_primary_keys, child_force_types = self._analyze_child_node_mapping(
+                node_thing, child)
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+
+        primary_keys = self.add_prefix_to_list_items(primary_keys, dict_node_name + ".")
+        force_types = self.add_prefix_to_list_items(force_types, dict_node_name + ".")
+        columns = self.add_prefix_to_dict_keys(columns, dict_node_name + ".")
+        child_tables = self.add_prefix_to_dict_keys(child_tables, dict_node_name + ".")
         return columns, child_tables, primary_keys, force_types
 
     def get_column_mappings_at_path(self, node_path: List[str]) -> Dict[str, str]:

@@ -33,10 +33,13 @@ class TableMapping:
         self.force_types = force_types
         self.user_data = user_data
 
-    def get_table_mappings_flattened(self, path: Optional[str] = None) -> Dict:
+    def get_table_mappings_flattened(self) -> Dict:
         """
-        Retrieve a flattened representation of the mapping structure based on a specified object path.
-        Primarily meant for debugging purposes.
+        Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
+        in the hierarchy is indexed by the table name.
+
+        E.g. Table mapping with root table name `user` and child table `user_address` returns following strucutre:
+        {"user": TableMapping, "user_address":TableMapping")
 
         Parameters:
         - path (Optional[str]): The object path for which the mapping should be retrieved.
@@ -45,23 +48,22 @@ class TableMapping:
         Returns:
         - Dict: Flattened representation of the mapping structure.
         """
-        full_mapping = self._flatten_mapping(self.as_dict())
 
-        if path:
-            return {k: v for k, v in full_mapping.items() if k.startswith(path)}
+        def _flatten_mapping(mapping: 'TableMapping') -> Dict:
+            flat_mappings = {}
+
+            table_name = mapping.table_name
+            flat_mappings[table_name] = mapping
+
+            for child_mapping in mapping.child_tables.values():
+                flat_mappings.update(_flatten_mapping(child_mapping))
+
+            return flat_mappings
+
+        # recursively flatten
+        full_mapping = _flatten_mapping(self)
 
         return full_mapping
-
-    def _flatten_mapping(self, mapping: 'TableMapping', current_path: str = "") -> Dict:
-        flat_mappings = {}
-        separator = '.'
-        table_name = mapping.table_name
-        flat_mappings[table_name] = mapping  # Shallow copy of the mapping
-
-        for _, child_mapping in mapping.child_tables:
-            flat_mappings.update(self._flatten_mapping(child_mapping))
-
-        return flat_mappings
 
     def as_dict(self):
         return {"table_name": self.table_name,

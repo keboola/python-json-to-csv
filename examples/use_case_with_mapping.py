@@ -77,8 +77,9 @@ parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=T
 parsed_data = parser.parse_data(data)
 
 # Get user.addresses mapping KCOFAC-2624 - flatten result for debugging
-print(parser.get_mapping_by_object_path())
-print(parser.get_mapping_by_object_path("user.addresses"))
+flattened_result_tables = parser.get_table_mapping().get_table_mappings_flattened()
+print(flattened_result_tables)
+print(flattened_result_tables['addresses'])
 
 # KCOFAC-2623 - store mapping in statefile
 table_mapping = parser.get_table_mapping()
