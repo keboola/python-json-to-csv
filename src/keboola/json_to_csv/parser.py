@@ -77,35 +77,16 @@ class Parser:
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
 
-    def get_table_mapping(self) -> Dict:
+    def get_table_mapping(self) -> TableMapping:
         """
         Get the table mapping used by the parser.
 
         Returns:
-            Dict: The table mapping used by the parser.
+            TableMapping: The table mapping used by the parser.
         """
-        return self.analyzer.get_mapping_dict_fom_structure()
+        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
 
-    def get_mapping_by_object_path(self, path: Optional[str] = None, separator: str = ".") -> Dict:
-        """
-        Retrieve a flattened representation of the mapping structure based on a specified object path.
-        Primarily meant for debugging purposes.
-
-        Parameters:
-        - path (Optional[str]): The object path for which the mapping should be retrieved.
-                                If None, the full flattened mapping is returned.
-        - separator (str): The separator used to delimit table names in the flattened representation.
-                           Default is '.'.
-
-        Returns:
-        - Dict: Flattened representation of the mapping structure.
-        """
-        full_mapping = self._flatten_mapping(self.analyzer.get_mapping_dict_fom_structure(), separator)
-
-        if path:
-            return {k: v for k, v in full_mapping.items() if k.startswith(path)}
-
-        return full_mapping
+        return TableMapping.build_from_mapping_dict(table_mapping_dict)
 
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],
@@ -325,14 +306,3 @@ class Parser:
                 current_table_primary_keys[name] = data_row.get(child_node)
 
         return current_table_primary_keys
-
-    def _flatten_mapping(self, mapping: Dict, separator: str, current_path: str = "") -> Dict:
-        flat_mappings = {}
-        table_name = mapping.get('table_name', "")
-        new_path = current_path + separator + table_name if current_path else table_name
-        flat_mappings[new_path] = dict(mapping)  # Shallow copy of the mapping
-
-        for _, child_mapping in mapping.get('child_tables', {}).items():
-            flat_mappings.update(self._flatten_mapping(child_mapping, separator, new_path))
-
-        return flat_mappings

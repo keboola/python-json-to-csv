@@ -33,7 +33,6 @@ data = [
     }
 ]
 
-
 mapping_dict = {
     'table_name': 'user',
     'column_mappings': {
@@ -73,7 +72,6 @@ mapping_dict = {
     }
 }
 
-
 mapping = TableMapping.build_from_mapping_dict(mapping_dict)
 parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
 parsed_data = parser.parse_data(data)
@@ -82,10 +80,14 @@ parsed_data = parser.parse_data(data)
 print(parser.get_mapping_by_object_path())
 print(parser.get_mapping_by_object_path("user.addresses"))
 
-
 # KCOFAC-2623 - store mapping in statefile
-table_mappings = parser.get_table_mapping()
-mapping = TableMapping.build_from_mapping_dict(table_mappings)
+table_mapping = parser.get_table_mapping()
+
+# store in state
+mapping_dict = table_mapping.as_dict()
+
+# restore from state
+mapping = TableMapping.build_from_mapping_dict(mapping_dict)
 parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
 parsed = parser.parse_data(data)
 print(parsed)

@@ -33,6 +33,43 @@ class TableMapping:
         self.force_types = force_types
         self.user_data = user_data
 
+    def get_table_mappings_flattened(self, path: Optional[str] = None) -> Dict:
+        """
+        Retrieve a flattened representation of the mapping structure based on a specified object path.
+        Primarily meant for debugging purposes.
+
+        Parameters:
+        - path (Optional[str]): The object path for which the mapping should be retrieved.
+                                If None, the full flattened mapping is returned.
+
+        Returns:
+        - Dict: Flattened representation of the mapping structure.
+        """
+        full_mapping = self._flatten_mapping(self.as_dict())
+
+        if path:
+            return {k: v for k, v in full_mapping.items() if k.startswith(path)}
+
+        return full_mapping
+
+    def _flatten_mapping(self, mapping: 'TableMapping', current_path: str = "") -> Dict:
+        flat_mappings = {}
+        separator = '.'
+        table_name = mapping.table_name
+        flat_mappings[table_name] = mapping  # Shallow copy of the mapping
+
+        for _, child_mapping in mapping.child_tables:
+            flat_mappings.update(self._flatten_mapping(child_mapping))
+
+        return flat_mappings
+
+    def as_dict(self):
+        return {"table_name": self.table_name,
+                "column_mappings": self.column_mappings,
+                "primary_keys": self.primary_keys,
+                "force_types": self.force_types,
+                "child_tables": self.child_tables}
+
     @classmethod
     def build_from_legacy_mapping(cls,
                                   legacy_mapping: dict,
