@@ -66,11 +66,13 @@ class TableMapping:
         return full_mapping
 
     def as_dict(self):
-        return {"table_name": self.table_name,
-                "column_mappings": self.column_mappings,
-                "primary_keys": self.primary_keys,
-                "force_types": self.force_types,
-                "child_tables": self.child_tables}
+        return {
+            "table_name": self.table_name,
+            "column_mappings": self.column_mappings,
+            "primary_keys": self.primary_keys,
+            "force_types": self.force_types,
+            "child_tables": {key: value.as_dict() for key, value in self.child_tables.items()}
+        }
 
     @classmethod
     def build_from_legacy_mapping(cls,

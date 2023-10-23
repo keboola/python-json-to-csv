@@ -76,10 +76,10 @@ mapping = TableMapping.build_from_mapping_dict(mapping_dict)
 parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
 parsed_data = parser.parse_data(data)
 
-# Get user.addresses mapping KCOFAC-2624 - flatten result for debugging
+# KCOFAC-2624 - flatten result for debugging
 flattened_result_tables = parser.get_table_mapping().get_table_mappings_flattened()
-print(flattened_result_tables)
-print(flattened_result_tables['addresses'])
+for mapping in flattened_result_tables:
+    print(flattened_result_tables[mapping].as_dict())
 
 # KCOFAC-2623 - store mapping in statefile
 table_mapping = parser.get_table_mapping()
