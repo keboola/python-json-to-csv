@@ -77,33 +77,16 @@ class Parser:
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
 
-    def get_table_mapping(self):
+    def get_table_mapping(self) -> TableMapping:
         """
         Get the table mapping used by the parser.
 
         Returns:
             TableMapping: The table mapping used by the parser.
         """
-        return self.analyzer.get_mapping_dict_fom_structure()
+        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
 
-    def analyze_data(self, input_data: List[Dict], node_path: Optional[List[str]] = None) -> Dict[str, Table]:
-        """
-        Analyze input data and return a dictionary of Table objects.
-
-        Parameters:
-            input_data (List[Dict]): The JSON data to analyze.
-            node_path (Optional[List[str]]): The path to the current node being analyzed (default: None).
-
-        Returns:
-            Dict[str, Table]: A dictionary containing Table objects representing the analyzed data.
-        """
-        if not node_path:
-            node_path = []
-        for row in input_data:
-            if is_scalar(row):
-                row = {"data": row}
-            self._parse_row(row, node_path)
-        return self.analyzer.get_mapping_dict_fom_structure()
+        return TableMapping.build_from_mapping_dict(table_mapping_dict)
 
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],

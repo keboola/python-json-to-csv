@@ -50,7 +50,7 @@ class Analyzer:
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
 
-    def get_mapping_dict_fom_structure(self):
+    def get_mapping_dict_fom_structure(self) -> Dict:
         return self._get_table_mapping_of_node_hierarchy()
 
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -> None:
@@ -361,7 +361,7 @@ class Analyzer:
             self.add_node(path, NodeType.LIST)
             self.update_with_table_mapping(table_mapping.child_tables.get(child_table), path)
 
-    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None):
+    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None) -> Dict:
         if not node_hierarchy:
             node_hierarchy = self.node_hierarchy
         table_name = node_hierarchy.get("node").header_name
