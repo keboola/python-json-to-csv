@@ -238,7 +238,7 @@ class Analyzer:
             node = self.node_hierarchy
         if len(path_to_object) > 1:
             for path_step in path_to_object[1:]:
-                node = node.get("children").get(path_step, {})
+                node = node.get("children", {}).get(path_step, {})
         return node or None
 
     def add_node(self, path_to_object: List[str], value_type: NodeType, force_type: bool = False,
