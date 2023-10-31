@@ -50,9 +50,6 @@ class Analyzer:
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
 
-    def get_mapping_dict_fom_structure(self) -> Dict:
-        return self._get_table_mapping_of_node_hierarchy()
-
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -> None:
         """
             Analyzes an object within the data structure and updates the node hierarchy accordingly.

@@ -77,17 +77,6 @@ class Parser:
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
 
-    def get_table_mapping(self) -> TableMapping:
-        """
-        Get the table mapping used by the parser.
-
-        Returns:
-            TableMapping: The table mapping used by the parser.
-        """
-        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
-
-        return TableMapping.build_from_mapping_dict(table_mapping_dict)
-
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],
                                             root_name: Optional[str]) -> List[Dict]:
