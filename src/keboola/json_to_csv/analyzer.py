@@ -231,7 +231,9 @@ class Analyzer:
         self._process_user_data_mappings(table_mapping, parent_path)
         self._process_child_table_mappings(table_mapping, parent_path)
 
-    def get_node_dict(self, path_to_object: List) -> Dict:
+    def get_node_dict(self, path_to_object: List, parent_path: List = None) -> Dict:
+        if parent_path:
+            path_to_object = parent_path + path_to_object
         if len(path_to_object) > 0:
             node = self.node_hierarchy.get("children").get(path_to_object[0], {})
         else:
@@ -337,7 +339,7 @@ class Analyzer:
 
         for i, item in enumerate(split_name):
             paths_added.append(item)
-            node = self.get_node_dict(paths_added)
+            node = self.get_node_dict(paths_added, parent_path)
             if not node:
                 path = parent_path.copy()
                 path.extend(paths_added)
