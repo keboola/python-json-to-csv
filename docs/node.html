@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>keboola.json_to_csv.node API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>keboola.json_to_csv.node</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum, auto
+from typing import List, Optional
+
+
+class NodeType(Enum):
+    &#34;&#34;&#34;
+    Enumerates the types of nodes in the JSON data.
+
+    This enumeration represents the various types of nodes that can be encountered while processing JSON data.
+    Each node type corresponds to a different data structure in the JSON.
+
+    Enumeration Values:
+        DICT: Represents a dictionary node in the JSON.
+        NULL: Represents a null value node in the JSON.
+        LIST: Represents a list node in the JSON.
+        LIST_OF_DICTS: Represents a list of dictionaries node in the JSON.
+        LIST_OF_SCALARS: Represents a list of scalars node in the JSON.
+        SCALAR: Represents a scalar node (e.g., int, bool, float, string) in the JSON.
+
+    &#34;&#34;&#34;
+    DICT = auto()
+    NULL = auto()
+    LIST = auto()
+    LIST_OF_DICTS = auto()
+    LIST_OF_SCALARS = auto()
+    SCALAR = auto()
+
+    @staticmethod
+    def from_str(label: str) -&gt; &#39;NodeType&#39;:
+        &#34;&#34;&#34;
+        Convert a string label to its corresponding NodeType.
+
+        This static method allows converting a string representation of a node type to its corresponding
+        NodeType enumeration value.
+
+        Parameters:
+            label (str): The string label representing the node type.
+
+        Returns:
+            NodeType: The NodeType enumeration value corresponding to the given label.
+
+        Raises:
+            NotImplementedError: If the given label is not recognized as a valid NodeType.
+        &#34;&#34;&#34;
+        if label in (&#39;int&#39;, &#39;integer&#39;):
+            return NodeType.SCALAR
+        elif label in (&#39;bool&#39;, &#39;boolean&#39;):
+            return NodeType.SCALAR
+        elif label == &#39;float&#39;:
+            return NodeType.SCALAR
+        elif label == &#39;dict&#39;:
+            return NodeType.DICT
+        elif label == &#39;list&#39;:
+            return NodeType.LIST
+        elif label in (&#39;str&#39;, &#39;string&#39;):
+            return NodeType.SCALAR
+        else:
+            raise NotImplementedError
+
+
+class Node:
+    &#34;&#34;&#34;
+    Node Representation in the JSON data structure.
+
+    This class represents a node in the JSON data structure. Each node can have various properties such as its path,
+    header name, data type, parent node name, and more.
+
+    Attributes:
+        path (List[str]): The path to the current node in the JSON data.
+        header_name (str): The header name representing the node in the CSV output.
+        data_name (str): The name of the data represented by the node.
+        data_type (NodeType): The data type of the node.
+        parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
+        is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
+        force_type (bool):  A flag indicating whether to not parse the data further (save it as is) (default: False).
+        default_value (Optional[str]): The default value for the node if the data is missing (default: None).
+
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                 path: List[str],
+                 data_name: str,
+                 data_type: NodeType,
+                 parent_name: Optional[str] = None,
+                 is_primary_key: bool = False,
+                 force_type: bool = False,
+                 destination_name: Optional[str] = None,
+                 default_value: Optional[str] = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize a Node object.
+
+        Parameters:
+            path (List[str]): The path to the current node in the JSON data.
+            data_name (str): The name of the data represented by the node.
+            data_type (NodeType): The data type of the node.
+            parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
+            is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
+            force_type (bool): A flag indicating whether to not parse the data further (save it as is)(default: False).
+            destination_name (Optional[str]): An alternative header name to use in the CSV output (default: None).
+            default_value (Optional[str]): The default value for the node if the data is missing (default: None).
+        &#34;&#34;&#34;
+        self.path: List = path
+        self.header_name: str = data_name
+        if parent_name:
+            self.header_name = f&#34;{parent_name}_{data_name}&#34;
+
+        if destination_name:
+            self.header_name = destination_name
+
+        self.data_name = data_name
+        self.data_type = data_type
+        self.parent_name = parent_name
+        self.is_primary_key = is_primary_key
+        self.force_type = force_type
+        self.default_value = default_value
+
+    def __eq__(self, other) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if two Node objects are equal.
+
+        This method compares two Node objects and checks whether they are equal based on their properties.
+
+        Parameters:
+            other: The other Node object to compare.
+
+        Returns:
+            bool: True if the two Node objects are equal; otherwise, False.
+        &#34;&#34;&#34;
+        equals = True
+        if not other:
+            raise TypeError(&#34;Trying to compare node to a NoneType&#34;)
+        if self.path != other.path:
+            equals = False
+        if self.header_name != other.header_name:
+            equals = False
+        if self.data_type != other.data_type:
+            equals = False
+        return equals</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="keboola.json_to_csv.node.Node"><code class="flex name class">
+<span>class <span class="ident">Node</span></span>
+<span>(</span><span>path: List[str], data_name: str, data_type: <a title="keboola.json_to_csv.node.NodeType" href="#keboola.json_to_csv.node.NodeType">NodeType</a>, parent_name: Optional[str] = None, is_primary_key: bool = False, force_type: bool = False, destination_name: Optional[str] = None, default_value: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Node Representation in the JSON data structure.</p>
+<p>This class represents a node in the JSON data structure. Each node can have various properties such as its path,
+header name, data type, parent node name, and more.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>List[str]</code></dt>
+<dd>The path to the current node in the JSON data.</dd>
+<dt><strong><code>header_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The header name representing the node in the CSV output.</dd>
+<dt><strong><code>data_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the data represented by the node.</dd>
+<dt><strong><code>data_type</code></strong> :&ensp;<code><a title="keboola.json_to_csv.node.NodeType" href="#keboola.json_to_csv.node.NodeType">NodeType</a></code></dt>
+<dd>The data type of the node.</dd>
+<dt><strong><code>parent_name</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>The name of the parent node (if any) that contains this node (default: None).</dd>
+<dt><strong><code>is_primary_key</code></strong> :&ensp;<code>bool</code></dt>
+<dd>A flag indicating whether the node is a primary key (default: False).</dd>
+<dt><strong><code>force_type</code></strong> :&ensp;<code>bool</code></dt>
+<dd>A flag indicating whether to not parse the data further (save it as is) (default: False).</dd>
+<dt><strong><code>default_value</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>The default value for the node if the data is missing (default: None).</dd>
+</dl>
+<p>Initialize a Node object.</p>
+<h2 id="parameters">Parameters</h2>
+<p>path (List[str]): The path to the current node in the JSON data.
+data_name (str): The name of the data represented by the node.
+data_type (NodeType): The data type of the node.
+parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
+is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
+force_type (bool): A flag indicating whether to not parse the data further (save it as is)(default: False).
+destination_name (Optional[str]): An alternative header name to use in the CSV output (default: None).
+default_value (Optional[str]): The default value for the node if the data is missing (default: None).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Node:
+    &#34;&#34;&#34;
+    Node Representation in the JSON data structure.
+
+    This class represents a node in the JSON data structure. Each node can have various properties such as its path,
+    header name, data type, parent node name, and more.
+
+    Attributes:
+        path (List[str]): The path to the current node in the JSON data.
+        header_name (str): The header name representing the node in the CSV output.
+        data_name (str): The name of the data represented by the node.
+        data_type (NodeType): The data type of the node.
+        parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
+        is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
+        force_type (bool):  A flag indicating whether to not parse the data further (save it as is) (default: False).
+        default_value (Optional[str]): The default value for the node if the data is missing (default: None).
+
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                 path: List[str],
+                 data_name: str,
+                 data_type: NodeType,
+                 parent_name: Optional[str] = None,
+                 is_primary_key: bool = False,
+                 force_type: bool = False,
+                 destination_name: Optional[str] = None,
+                 default_value: Optional[str] = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize a Node object.
+
+        Parameters:
+            path (List[str]): The path to the current node in the JSON data.
+            data_name (str): The name of the data represented by the node.
+            data_type (NodeType): The data type of the node.
+            parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
+            is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
+            force_type (bool): A flag indicating whether to not parse the data further (save it as is)(default: False).
+            destination_name (Optional[str]): An alternative header name to use in the CSV output (default: None).
+            default_value (Optional[str]): The default value for the node if the data is missing (default: None).
+        &#34;&#34;&#34;
+        self.path: List = path
+        self.header_name: str = data_name
+        if parent_name:
+            self.header_name = f&#34;{parent_name}_{data_name}&#34;
+
+        if destination_name:
+            self.header_name = destination_name
+
+        self.data_name = data_name
+        self.data_type = data_type
+        self.parent_name = parent_name
+        self.is_primary_key = is_primary_key
+        self.force_type = force_type
+        self.default_value = default_value
+
+    def __eq__(self, other) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if two Node objects are equal.
+
+        This method compares two Node objects and checks whether they are equal based on their properties.
+
+        Parameters:
+            other: The other Node object to compare.
+
+        Returns:
+            bool: True if the two Node objects are equal; otherwise, False.
+        &#34;&#34;&#34;
+        equals = True
+        if not other:
+            raise TypeError(&#34;Trying to compare node to a NoneType&#34;)
+        if self.path != other.path:
+            equals = False
+        if self.header_name != other.header_name:
+            equals = False
+        if self.data_type != other.data_type:
+            equals = False
+        return equals</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType"><code class="flex name class">
+<span>class <span class="ident">NodeType</span></span>
+<span>(</span><span>*args, **kwds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enumerates the types of nodes in the JSON data.</p>
+<p>This enumeration represents the various types of nodes that can be encountered while processing JSON data.
+Each node type corresponds to a different data structure in the JSON.</p>
+<p>Enumeration Values:
+DICT: Represents a dictionary node in the JSON.
+NULL: Represents a null value node in the JSON.
+LIST: Represents a list node in the JSON.
+LIST_OF_DICTS: Represents a list of dictionaries node in the JSON.
+LIST_OF_SCALARS: Represents a list of scalars node in the JSON.
+SCALAR: Represents a scalar node (e.g., int, bool, float, string) in the JSON.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NodeType(Enum):
+    &#34;&#34;&#34;
+    Enumerates the types of nodes in the JSON data.
+
+    This enumeration represents the various types of nodes that can be encountered while processing JSON data.
+    Each node type corresponds to a different data structure in the JSON.
+
+    Enumeration Values:
+        DICT: Represents a dictionary node in the JSON.
+        NULL: Represents a null value node in the JSON.
+        LIST: Represents a list node in the JSON.
+        LIST_OF_DICTS: Represents a list of dictionaries node in the JSON.
+        LIST_OF_SCALARS: Represents a list of scalars node in the JSON.
+        SCALAR: Represents a scalar node (e.g., int, bool, float, string) in the JSON.
+
+    &#34;&#34;&#34;
+    DICT = auto()
+    NULL = auto()
+    LIST = auto()
+    LIST_OF_DICTS = auto()
+    LIST_OF_SCALARS = auto()
+    SCALAR = auto()
+
+    @staticmethod
+    def from_str(label: str) -&gt; &#39;NodeType&#39;:
+        &#34;&#34;&#34;
+        Convert a string label to its corresponding NodeType.
+
+        This static method allows converting a string representation of a node type to its corresponding
+        NodeType enumeration value.
+
+        Parameters:
+            label (str): The string label representing the node type.
+
+        Returns:
+            NodeType: The NodeType enumeration value corresponding to the given label.
+
+        Raises:
+            NotImplementedError: If the given label is not recognized as a valid NodeType.
+        &#34;&#34;&#34;
+        if label in (&#39;int&#39;, &#39;integer&#39;):
+            return NodeType.SCALAR
+        elif label in (&#39;bool&#39;, &#39;boolean&#39;):
+            return NodeType.SCALAR
+        elif label == &#39;float&#39;:
+            return NodeType.SCALAR
+        elif label == &#39;dict&#39;:
+            return NodeType.DICT
+        elif label == &#39;list&#39;:
+            return NodeType.LIST
+        elif label in (&#39;str&#39;, &#39;string&#39;):
+            return NodeType.SCALAR
+        else:
+            raise NotImplementedError</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="keboola.json_to_csv.node.NodeType.DICT"><code class="name">var <span class="ident">DICT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType.LIST"><code class="name">var <span class="ident">LIST</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType.LIST_OF_DICTS"><code class="name">var <span class="ident">LIST_OF_DICTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType.LIST_OF_SCALARS"><code class="name">var <span class="ident">LIST_OF_SCALARS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType.NULL"><code class="name">var <span class="ident">NULL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="keboola.json_to_csv.node.NodeType.SCALAR"><code class="name">var <span class="ident">SCALAR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="keboola.json_to_csv.node.NodeType.from_str"><code class="name flex">
+<span>def <span class="ident">from_str</span></span>(<span>label: str) ‑> <a title="keboola.json_to_csv.node.NodeType" href="#keboola.json_to_csv.node.NodeType">NodeType</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert a string label to its corresponding NodeType.</p>
+<p>This static method allows converting a string representation of a node type to its corresponding
+NodeType enumeration value.</p>
+<h2 id="parameters">Parameters</h2>
+<p>label (str): The string label representing the node type.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="keboola.json_to_csv.node.NodeType" href="#keboola.json_to_csv.node.NodeType">NodeType</a></code></dt>
+<dd>The NodeType enumeration value corresponding to the given label.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>NotImplementedError</code></dt>
+<dd>If the given label is not recognized as a valid NodeType.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_str(label: str) -&gt; &#39;NodeType&#39;:
+    &#34;&#34;&#34;
+    Convert a string label to its corresponding NodeType.
+
+    This static method allows converting a string representation of a node type to its corresponding
+    NodeType enumeration value.
+
+    Parameters:
+        label (str): The string label representing the node type.
+
+    Returns:
+        NodeType: The NodeType enumeration value corresponding to the given label.
+
+    Raises:
+        NotImplementedError: If the given label is not recognized as a valid NodeType.
+    &#34;&#34;&#34;
+    if label in (&#39;int&#39;, &#39;integer&#39;):
+        return NodeType.SCALAR
+    elif label in (&#39;bool&#39;, &#39;boolean&#39;):
+        return NodeType.SCALAR
+    elif label == &#39;float&#39;:
+        return NodeType.SCALAR
+    elif label == &#39;dict&#39;:
+        return NodeType.DICT
+    elif label == &#39;list&#39;:
+        return NodeType.LIST
+    elif label in (&#39;str&#39;, &#39;string&#39;):
+        return NodeType.SCALAR
+    else:
+        raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="keboola.json_to_csv" href="index.html">keboola.json_to_csv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="keboola.json_to_csv.node.Node" href="#keboola.json_to_csv.node.Node">Node</a></code></h4>
+</li>
+<li>
+<h4><code><a title="keboola.json_to_csv.node.NodeType" href="#keboola.json_to_csv.node.NodeType">NodeType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="keboola.json_to_csv.node.NodeType.DICT" href="#keboola.json_to_csv.node.NodeType.DICT">DICT</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.LIST" href="#keboola.json_to_csv.node.NodeType.LIST">LIST</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.LIST_OF_DICTS" href="#keboola.json_to_csv.node.NodeType.LIST_OF_DICTS">LIST_OF_DICTS</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.LIST_OF_SCALARS" href="#keboola.json_to_csv.node.NodeType.LIST_OF_SCALARS">LIST_OF_SCALARS</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.NULL" href="#keboola.json_to_csv.node.NodeType.NULL">NULL</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.SCALAR" href="#keboola.json_to_csv.node.NodeType.SCALAR">SCALAR</a></code></li>
+<li><code><a title="keboola.json_to_csv.node.NodeType.from_str" href="#keboola.json_to_csv.node.NodeType.from_str">from_str</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
