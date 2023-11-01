@@ -1,0 +1,54 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 src/ --config=flake8.cfg
+      - name: Test with pytest
+        run: |
+          pytest tests
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+      - name: Create html documentation
+        run: |
+          pip install --user pdoc3
+          python setup.py install
+          pdoc --html -f -o .\docs keboola.json-to-csv
+          mv .docs/keboola/component/* docs
+          rm -r .docs/keboola
+      - name: Commit docs
+        run: |
+          git config --global user.name 'KCF'
+          git config --global user.email 'kcf@users.noreply.github.com'
+          git commit --allow-empty -am "Automated html docs build"
+          git push
