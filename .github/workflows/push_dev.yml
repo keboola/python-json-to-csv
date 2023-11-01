@@ -44,8 +44,8 @@ jobs:
           pip install --user pdoc3
           python setup.py install
           pdoc --html -f -o ./docs keboola.json_to_csv
-          mv .docs/keboola/json_to_csv/* ./docs
-          rm -r .docs/keboola
+          mv ./docs/keboola/json_to_csv/* ./docs
+          rm -r ./docs/keboola
       - name: Commit docs
         run: |
           git config --global user.name 'KCF'

@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>keboola.json_to_csv.mapping API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>keboola.json_to_csv.mapping</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from typing import Dict, List, Optional
+
+
+class TableMapping:
+    &#34;&#34;&#34;
+        Table Mapping for Converting JSON to CSV.
+
+        This class represents the mapping of tables and their columns, primary keys, and force types. It is used for
+        converting JSON data into CSV format with the specified table structure.
+
+        Attributes:
+            table_name (str): The name of the table.
+            column_mappings (Dict[str, str]): A dictionary mapping JSON keys to CSV headers for each column in the table.
+            primary_keys (List[str]): A list of primary key column names in the table.
+            child_tables (Dict[str, TableMapping]): A dictionary mapping child table names to their corresponding TableMapping objects.
+            force_types (List[str]): A list of column names that require forcing specific data types.
+            user_data (Dict[str, str]): Additional user-defined data associated with the table mapping.
+
+        &#34;&#34;&#34;
+
+    def __init__(self,
+                 table_name: str,
+                 column_mappings: Dict[str, str],
+                 primary_keys: List[str],
+                 child_tables: Dict[str, &#39;TableMapping&#39;],
+                 force_types: List[str],
+                 user_data: Dict[str, str]) -&gt; None:
+
+        self.table_name: str = table_name
+        self.column_mappings: Dict = column_mappings
+        self.primary_keys: List = primary_keys
+        self.child_tables: Dict = child_tables
+        self.force_types = force_types
+        self.user_data = user_data
+
+    def table_mappings_flattened_by_key(self) -&gt; Dict[str, &#39;TableMapping&#39;]:
+        &#34;&#34;&#34;
+        Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
+        in the hierarchy is indexed by the table name.
+
+        E.g. Table mapping with root table name `user` and child table `user_address` returns following strucutre:
+        {&#34;user&#34;: TableMapping, &#34;user_address&#34;:TableMapping&#34;)
+
+        Parameters:
+        - path (Optional[str]): The object path for which the mapping should be retrieved.
+                                If None, the full flattened mapping is returned.
+
+        Returns:
+        - Dict: Flattened representation of the mapping structure.
+        &#34;&#34;&#34;
+
+        def _flatten_mapping(mapping: &#39;TableMapping&#39;, key=&#39;&#39;) -&gt; Dict:
+            flat_mappings = {}
+
+            table_name = mapping.table_name
+            if not key:
+                key = table_name
+
+            flat_mappings[key] = mapping
+
+            for child_key, child_mapping in mapping.child_tables.items():
+                # TODO: use dynamic separator
+                key = f&#39;{key}_{child_key}&#39;
+                flat_mappings.update(_flatten_mapping(child_mapping, key))
+
+            return flat_mappings
+
+        # recursively flatten
+        full_mapping = _flatten_mapping(self)
+
+        return full_mapping
+
+    def as_dict(self):
+        return {
+            &#34;table_name&#34;: self.table_name,
+            &#34;column_mappings&#34;: self.column_mappings,
+            &#34;primary_keys&#34;: self.primary_keys,
+            &#34;force_types&#34;: self.force_types,
+            &#34;child_tables&#34;: {key: value.as_dict() for key, value in self.child_tables.items()}
+        }
+
+    @classmethod
+    def build_from_legacy_mapping(cls,
+                                  legacy_mapping: dict,
+                                  user_data: Optional[Dict[str, str]] = None) -&gt; &#34;TableMapping&#34;:
+        &#34;&#34;&#34;
+        Build a TableMapping object from a legacy mapping in the old format (PHP JsonParser mapping).
+
+        This class method allows constructing a TableMapping object from a legacy mapping in the old format.
+
+        Parameters:
+            legacy_mapping (dict): The legacy mapping dictionary in the old format.
+            user_data (Optional[Dict[str, str]]): Additional user-defined data associated with the table mapping (default: None).
+
+        Returns:
+            TableMapping: A TableMapping object representing the table mapping in the new format.
+
+        &#34;&#34;&#34;
+
+        if not user_data:
+            user_data = {}
+
+        # TODO Add delimiter options
+        table_name = list(legacy_mapping.keys())[0]
+
+        column_mappings = {}
+        primary_keys = []
+        force_types = []
+
+        child_tables = {}
+
+        for node_id, node in legacy_mapping.get(table_name).items():
+            # if the value is string it is a simplified column mapping
+            if isinstance(node, str) or node.get(&#34;type&#34;) == &#34;column&#34; or not node.get(&#34;type&#34;):
+                raw_name = node_id
+                destination_name = node if isinstance(node, str) else node.get(&#34;mapping&#34;).get(&#34;destination&#34;)
+                column_mappings[raw_name] = destination_name
+
+            # it is not simplified mapping
+            if isinstance(node, dict):
+                if node.get(&#34;type&#34;) == &#34;column&#34;:
+                    if node.get(&#34;mapping&#34;).get(&#34;primaryKey&#34;):
+                        primary_keys.append(raw_name)
+                    if node.get(&#34;forceType&#34;):
+                        force_types.append(raw_name)
+                if node.get(&#34;type&#34;) == &#34;table&#34;:
+                    child_mapping = {node_id: node.get(&#34;tableMapping&#34;)}
+                    child_table_mapping = cls.build_from_legacy_mapping(child_mapping)
+                    child_tables[node_id] = child_table_mapping
+
+        return cls(table_name=table_name,
+                   column_mappings=column_mappings,
+                   primary_keys=primary_keys,
+                   child_tables=child_tables,
+                   force_types=force_types,
+                   user_data=user_data)
+
+    @classmethod
+    def build_from_mapping_dict(cls, mapping: Dict) -&gt; &#34;TableMapping&#34;:
+        &#34;&#34;&#34;
+        Build a TableMapping object from a dictionary representation of the mapping.
+
+        This class method allows constructing a TableMapping object from a dictionary representation of the mapping.
+
+        Parameters:
+            mapping (Dict): The dictionary representation of the table mapping.
+
+        Returns:
+            TableMapping: A TableMapping object representing the table mapping.
+
+        &#34;&#34;&#34;
+        child_tables = {}
+        for child in mapping.get(&#34;child_tables&#34;):
+            child_tables[child] = cls.build_from_mapping_dict(mapping.get(&#34;child_tables&#34;).get(child))
+        return cls(table_name=mapping.get(&#34;table_name&#34;),
+                   column_mappings=mapping.get(&#34;column_mappings&#34;),
+                   primary_keys=mapping.get(&#34;primary_keys&#34;),
+                   child_tables=child_tables,
+                   force_types=mapping.get(&#34;force_types&#34;),
+                   user_data=mapping.get(&#34;user_data&#34;, {}))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="keboola.json_to_csv.mapping.TableMapping"><code class="flex name class">
+<span>class <span class="ident">TableMapping</span></span>
+<span>(</span><span>table_name: str, column_mappings: Dict[str, str], primary_keys: List[str], child_tables: Dict[str, ForwardRef('<a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a>')], force_types: List[str], user_data: Dict[str, str])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Table Mapping for Converting JSON to CSV.</p>
+<p>This class represents the mapping of tables and their columns, primary keys, and force types. It is used for
+converting JSON data into CSV format with the specified table structure.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>table_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the table.</dd>
+<dt><strong><code>column_mappings</code></strong> :&ensp;<code>Dict[str, str]</code></dt>
+<dd>A dictionary mapping JSON keys to CSV headers for each column in the table.</dd>
+<dt><strong><code>primary_keys</code></strong> :&ensp;<code>List[str]</code></dt>
+<dd>A list of primary key column names in the table.</dd>
+<dt><strong><code>child_tables</code></strong> :&ensp;<code>Dict[str, <a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a>]</code></dt>
+<dd>A dictionary mapping child table names to their corresponding TableMapping objects.</dd>
+<dt><strong><code>force_types</code></strong> :&ensp;<code>List[str]</code></dt>
+<dd>A list of column names that require forcing specific data types.</dd>
+<dt><strong><code>user_data</code></strong> :&ensp;<code>Dict[str, str]</code></dt>
+<dd>Additional user-defined data associated with the table mapping.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TableMapping:
+    &#34;&#34;&#34;
+        Table Mapping for Converting JSON to CSV.
+
+        This class represents the mapping of tables and their columns, primary keys, and force types. It is used for
+        converting JSON data into CSV format with the specified table structure.
+
+        Attributes:
+            table_name (str): The name of the table.
+            column_mappings (Dict[str, str]): A dictionary mapping JSON keys to CSV headers for each column in the table.
+            primary_keys (List[str]): A list of primary key column names in the table.
+            child_tables (Dict[str, TableMapping]): A dictionary mapping child table names to their corresponding TableMapping objects.
+            force_types (List[str]): A list of column names that require forcing specific data types.
+            user_data (Dict[str, str]): Additional user-defined data associated with the table mapping.
+
+        &#34;&#34;&#34;
+
+    def __init__(self,
+                 table_name: str,
+                 column_mappings: Dict[str, str],
+                 primary_keys: List[str],
+                 child_tables: Dict[str, &#39;TableMapping&#39;],
+                 force_types: List[str],
+                 user_data: Dict[str, str]) -&gt; None:
+
+        self.table_name: str = table_name
+        self.column_mappings: Dict = column_mappings
+        self.primary_keys: List = primary_keys
+        self.child_tables: Dict = child_tables
+        self.force_types = force_types
+        self.user_data = user_data
+
+    def table_mappings_flattened_by_key(self) -&gt; Dict[str, &#39;TableMapping&#39;]:
+        &#34;&#34;&#34;
+        Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
+        in the hierarchy is indexed by the table name.
+
+        E.g. Table mapping with root table name `user` and child table `user_address` returns following strucutre:
+        {&#34;user&#34;: TableMapping, &#34;user_address&#34;:TableMapping&#34;)
+
+        Parameters:
+        - path (Optional[str]): The object path for which the mapping should be retrieved.
+                                If None, the full flattened mapping is returned.
+
+        Returns:
+        - Dict: Flattened representation of the mapping structure.
+        &#34;&#34;&#34;
+
+        def _flatten_mapping(mapping: &#39;TableMapping&#39;, key=&#39;&#39;) -&gt; Dict:
+            flat_mappings = {}
+
+            table_name = mapping.table_name
+            if not key:
+                key = table_name
+
+            flat_mappings[key] = mapping
+
+            for child_key, child_mapping in mapping.child_tables.items():
+                # TODO: use dynamic separator
+                key = f&#39;{key}_{child_key}&#39;
+                flat_mappings.update(_flatten_mapping(child_mapping, key))
+
+            return flat_mappings
+
+        # recursively flatten
+        full_mapping = _flatten_mapping(self)
+
+        return full_mapping
+
+    def as_dict(self):
+        return {
+            &#34;table_name&#34;: self.table_name,
+            &#34;column_mappings&#34;: self.column_mappings,
+            &#34;primary_keys&#34;: self.primary_keys,
+            &#34;force_types&#34;: self.force_types,
+            &#34;child_tables&#34;: {key: value.as_dict() for key, value in self.child_tables.items()}
+        }
+
+    @classmethod
+    def build_from_legacy_mapping(cls,
+                                  legacy_mapping: dict,
+                                  user_data: Optional[Dict[str, str]] = None) -&gt; &#34;TableMapping&#34;:
+        &#34;&#34;&#34;
+        Build a TableMapping object from a legacy mapping in the old format (PHP JsonParser mapping).
+
+        This class method allows constructing a TableMapping object from a legacy mapping in the old format.
+
+        Parameters:
+            legacy_mapping (dict): The legacy mapping dictionary in the old format.
+            user_data (Optional[Dict[str, str]]): Additional user-defined data associated with the table mapping (default: None).
+
+        Returns:
+            TableMapping: A TableMapping object representing the table mapping in the new format.
+
+        &#34;&#34;&#34;
+
+        if not user_data:
+            user_data = {}
+
+        # TODO Add delimiter options
+        table_name = list(legacy_mapping.keys())[0]
+
+        column_mappings = {}
+        primary_keys = []
+        force_types = []
+
+        child_tables = {}
+
+        for node_id, node in legacy_mapping.get(table_name).items():
+            # if the value is string it is a simplified column mapping
+            if isinstance(node, str) or node.get(&#34;type&#34;) == &#34;column&#34; or not node.get(&#34;type&#34;):
+                raw_name = node_id
+                destination_name = node if isinstance(node, str) else node.get(&#34;mapping&#34;).get(&#34;destination&#34;)
+                column_mappings[raw_name] = destination_name
+
+            # it is not simplified mapping
+            if isinstance(node, dict):
+                if node.get(&#34;type&#34;) == &#34;column&#34;:
+                    if node.get(&#34;mapping&#34;).get(&#34;primaryKey&#34;):
+                        primary_keys.append(raw_name)
+                    if node.get(&#34;forceType&#34;):
+                        force_types.append(raw_name)
+                if node.get(&#34;type&#34;) == &#34;table&#34;:
+                    child_mapping = {node_id: node.get(&#34;tableMapping&#34;)}
+                    child_table_mapping = cls.build_from_legacy_mapping(child_mapping)
+                    child_tables[node_id] = child_table_mapping
+
+        return cls(table_name=table_name,
+                   column_mappings=column_mappings,
+                   primary_keys=primary_keys,
+                   child_tables=child_tables,
+                   force_types=force_types,
+                   user_data=user_data)
+
+    @classmethod
+    def build_from_mapping_dict(cls, mapping: Dict) -&gt; &#34;TableMapping&#34;:
+        &#34;&#34;&#34;
+        Build a TableMapping object from a dictionary representation of the mapping.
+
+        This class method allows constructing a TableMapping object from a dictionary representation of the mapping.
+
+        Parameters:
+            mapping (Dict): The dictionary representation of the table mapping.
+
+        Returns:
+            TableMapping: A TableMapping object representing the table mapping.
+
+        &#34;&#34;&#34;
+        child_tables = {}
+        for child in mapping.get(&#34;child_tables&#34;):
+            child_tables[child] = cls.build_from_mapping_dict(mapping.get(&#34;child_tables&#34;).get(child))
+        return cls(table_name=mapping.get(&#34;table_name&#34;),
+                   column_mappings=mapping.get(&#34;column_mappings&#34;),
+                   primary_keys=mapping.get(&#34;primary_keys&#34;),
+                   child_tables=child_tables,
+                   force_types=mapping.get(&#34;force_types&#34;),
+                   user_data=mapping.get(&#34;user_data&#34;, {}))</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="keboola.json_to_csv.mapping.TableMapping.build_from_legacy_mapping"><code class="name flex">
+<span>def <span class="ident">build_from_legacy_mapping</span></span>(<span>legacy_mapping: dict, user_data: Optional[Dict[str, str]] = None) ‑> <a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build a TableMapping object from a legacy mapping in the old format (PHP JsonParser mapping).</p>
+<p>This class method allows constructing a TableMapping object from a legacy mapping in the old format.</p>
+<h2 id="parameters">Parameters</h2>
+<p>legacy_mapping (dict): The legacy mapping dictionary in the old format.
+user_data (Optional[Dict[str, str]]): Additional user-defined data associated with the table mapping (default: None).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></code></dt>
+<dd>A TableMapping object representing the table mapping in the new format.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def build_from_legacy_mapping(cls,
+                              legacy_mapping: dict,
+                              user_data: Optional[Dict[str, str]] = None) -&gt; &#34;TableMapping&#34;:
+    &#34;&#34;&#34;
+    Build a TableMapping object from a legacy mapping in the old format (PHP JsonParser mapping).
+
+    This class method allows constructing a TableMapping object from a legacy mapping in the old format.
+
+    Parameters:
+        legacy_mapping (dict): The legacy mapping dictionary in the old format.
+        user_data (Optional[Dict[str, str]]): Additional user-defined data associated with the table mapping (default: None).
+
+    Returns:
+        TableMapping: A TableMapping object representing the table mapping in the new format.
+
+    &#34;&#34;&#34;
+
+    if not user_data:
+        user_data = {}
+
+    # TODO Add delimiter options
+    table_name = list(legacy_mapping.keys())[0]
+
+    column_mappings = {}
+    primary_keys = []
+    force_types = []
+
+    child_tables = {}
+
+    for node_id, node in legacy_mapping.get(table_name).items():
+        # if the value is string it is a simplified column mapping
+        if isinstance(node, str) or node.get(&#34;type&#34;) == &#34;column&#34; or not node.get(&#34;type&#34;):
+            raw_name = node_id
+            destination_name = node if isinstance(node, str) else node.get(&#34;mapping&#34;).get(&#34;destination&#34;)
+            column_mappings[raw_name] = destination_name
+
+        # it is not simplified mapping
+        if isinstance(node, dict):
+            if node.get(&#34;type&#34;) == &#34;column&#34;:
+                if node.get(&#34;mapping&#34;).get(&#34;primaryKey&#34;):
+                    primary_keys.append(raw_name)
+                if node.get(&#34;forceType&#34;):
+                    force_types.append(raw_name)
+            if node.get(&#34;type&#34;) == &#34;table&#34;:
+                child_mapping = {node_id: node.get(&#34;tableMapping&#34;)}
+                child_table_mapping = cls.build_from_legacy_mapping(child_mapping)
+                child_tables[node_id] = child_table_mapping
+
+    return cls(table_name=table_name,
+               column_mappings=column_mappings,
+               primary_keys=primary_keys,
+               child_tables=child_tables,
+               force_types=force_types,
+               user_data=user_data)</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.mapping.TableMapping.build_from_mapping_dict"><code class="name flex">
+<span>def <span class="ident">build_from_mapping_dict</span></span>(<span>mapping: Dict) ‑> <a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build a TableMapping object from a dictionary representation of the mapping.</p>
+<p>This class method allows constructing a TableMapping object from a dictionary representation of the mapping.</p>
+<h2 id="parameters">Parameters</h2>
+<p>mapping (Dict): The dictionary representation of the table mapping.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></code></dt>
+<dd>A TableMapping object representing the table mapping.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def build_from_mapping_dict(cls, mapping: Dict) -&gt; &#34;TableMapping&#34;:
+    &#34;&#34;&#34;
+    Build a TableMapping object from a dictionary representation of the mapping.
+
+    This class method allows constructing a TableMapping object from a dictionary representation of the mapping.
+
+    Parameters:
+        mapping (Dict): The dictionary representation of the table mapping.
+
+    Returns:
+        TableMapping: A TableMapping object representing the table mapping.
+
+    &#34;&#34;&#34;
+    child_tables = {}
+    for child in mapping.get(&#34;child_tables&#34;):
+        child_tables[child] = cls.build_from_mapping_dict(mapping.get(&#34;child_tables&#34;).get(child))
+    return cls(table_name=mapping.get(&#34;table_name&#34;),
+               column_mappings=mapping.get(&#34;column_mappings&#34;),
+               primary_keys=mapping.get(&#34;primary_keys&#34;),
+               child_tables=child_tables,
+               force_types=mapping.get(&#34;force_types&#34;),
+               user_data=mapping.get(&#34;user_data&#34;, {}))</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="keboola.json_to_csv.mapping.TableMapping.as_dict"><code class="name flex">
+<span>def <span class="ident">as_dict</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def as_dict(self):
+    return {
+        &#34;table_name&#34;: self.table_name,
+        &#34;column_mappings&#34;: self.column_mappings,
+        &#34;primary_keys&#34;: self.primary_keys,
+        &#34;force_types&#34;: self.force_types,
+        &#34;child_tables&#34;: {key: value.as_dict() for key, value in self.child_tables.items()}
+    }</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.mapping.TableMapping.table_mappings_flattened_by_key"><code class="name flex">
+<span>def <span class="ident">table_mappings_flattened_by_key</span></span>(<span>self) ‑> Dict[str, <a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
+in the hierarchy is indexed by the table name.</p>
+<p>E.g. Table mapping with root table name <code>user</code> and child table <code>user_address</code> returns following strucutre:
+{"user": TableMapping, "user_address":TableMapping")</p>
+<p>Parameters:
+- path (Optional[str]): The object path for which the mapping should be retrieved.
+If None, the full flattened mapping is returned.</p>
+<p>Returns:
+- Dict: Flattened representation of the mapping structure.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def table_mappings_flattened_by_key(self) -&gt; Dict[str, &#39;TableMapping&#39;]:
+    &#34;&#34;&#34;
+    Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
+    in the hierarchy is indexed by the table name.
+
+    E.g. Table mapping with root table name `user` and child table `user_address` returns following strucutre:
+    {&#34;user&#34;: TableMapping, &#34;user_address&#34;:TableMapping&#34;)
+
+    Parameters:
+    - path (Optional[str]): The object path for which the mapping should be retrieved.
+                            If None, the full flattened mapping is returned.
+
+    Returns:
+    - Dict: Flattened representation of the mapping structure.
+    &#34;&#34;&#34;
+
+    def _flatten_mapping(mapping: &#39;TableMapping&#39;, key=&#39;&#39;) -&gt; Dict:
+        flat_mappings = {}
+
+        table_name = mapping.table_name
+        if not key:
+            key = table_name
+
+        flat_mappings[key] = mapping
+
+        for child_key, child_mapping in mapping.child_tables.items():
+            # TODO: use dynamic separator
+            key = f&#39;{key}_{child_key}&#39;
+            flat_mappings.update(_flatten_mapping(child_mapping, key))
+
+        return flat_mappings
+
+    # recursively flatten
+    full_mapping = _flatten_mapping(self)
+
+    return full_mapping</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="keboola.json_to_csv" href="index.html">keboola.json_to_csv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="keboola.json_to_csv.mapping.TableMapping" href="#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></code></h4>
+<ul class="">
+<li><code><a title="keboola.json_to_csv.mapping.TableMapping.as_dict" href="#keboola.json_to_csv.mapping.TableMapping.as_dict">as_dict</a></code></li>
+<li><code><a title="keboola.json_to_csv.mapping.TableMapping.build_from_legacy_mapping" href="#keboola.json_to_csv.mapping.TableMapping.build_from_legacy_mapping">build_from_legacy_mapping</a></code></li>
+<li><code><a title="keboola.json_to_csv.mapping.TableMapping.build_from_mapping_dict" href="#keboola.json_to_csv.mapping.TableMapping.build_from_mapping_dict">build_from_mapping_dict</a></code></li>
+<li><code><a title="keboola.json_to_csv.mapping.TableMapping.table_mappings_flattened_by_key" href="#keboola.json_to_csv.mapping.TableMapping.table_mappings_flattened_by_key">table_mappings_flattened_by_key</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>keboola.json_to_csv.analyzer API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>keboola.json_to_csv.analyzer</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import copy
+from typing import Any, Dict, List, Optional, Union, Tuple
+
+from .exceptions import JsonParserException
+from .mapping import TableMapping
+from .node import Node, NodeType
+from .utils import is_dict, is_list, is_scalar
+
+
+class Analyzer:
+    &#34;&#34;&#34;
+    The Analyzer class is designed to analyze a data structure and build a node hierarchy
+    that represents the structure and data types of the objects within it. It can be used
+    to create mappings for tabular data and handle complex nested structures.
+
+    The Analyzer works based on a node hierarchy, where each node represents an object or
+    a field in the data structure. The hierarchy is built by analyzing the provided data
+    using the `analyze_object` method, or by having it be initialized by a predefined table
+    mapping by the user.
+
+    The Analyzer supports different data types, such as dictionaries, lists, scalars, and
+    nested structures. It can handle various scenarios, including lists of dictionaries,
+    lists of scalars, and more. The data types are represented using the `NodeType` enum.
+
+    To use the Analyzer, you can initialize an instance with an optional root name and
+    TableMapping. The TableMapping helps to specify the mapping of the data structure to
+    tabular data. Then, call the `analyze_object` method to analyze each object within
+    the data structure. The `get_mapping_dict_fom_structure` method can be used to get
+    the resulting mapping dictionary.
+
+    The class also provides methods to upgrade node data types and get column mappings at
+    specific paths in the hierarchy.
+
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                 table_mapping: Optional[TableMapping] = None,
+                 root_name: Optional[str] = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the Analyzer object.
+
+        Args:
+            table_mapping (Optional[TableMapping]): The TableMapping object to use for the initialization of the
+                                                    node_hierarchy
+            root_name (Optional[str]): The root name for the data structure (optional).
+        &#34;&#34;&#34;
+
+        self.root_name = root_name
+        self.node_hierarchy = {&#34;children&#34;: {}, &#34;node&#34;: Node([], root_name, NodeType.LIST)}
+
+        if table_mapping:
+            self.update_with_table_mapping(table_mapping, None)
+
+    def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -&gt; None:
+        &#34;&#34;&#34;
+            Analyzes an object within the data structure and updates the node hierarchy accordingly.
+
+            This method is a recursive function that analyzes each object and its nested objects
+            within the data structure. It updates the node hierarchy with the appropriate data types
+            and mappings for each object.
+
+            Args:
+                path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+                    This list represents the sequence of keys or indices to reach the current object from the root.
+                name (str): The name of the current object. In the case of dictionaries, it represents the key name.
+                    In the case of lists, it represents the index.
+                value (Any): The value of the current object. It can be a scalar, dictionary, list, or None..
+            &#34;&#34;&#34;
+
+        object_path = self.create_path_to_child_object(path_to_object, name)
+
+        expected_node = self.get_node_dict(object_path)
+        if not expected_node:
+            real_type = self.get_value_type(path_to_object, value)
+            real_node = self.add_node(object_path, real_type)
+        else:
+            real_type = self.get_value_type(path_to_object, value)
+            expected_type = expected_node.get(&#34;node&#34;).data_type
+            if real_type != expected_type and not expected_node.get(&#34;node&#34;).force_type:
+                if self._check_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type):
+                    self._perform_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type)
+            real_node = self.get_node_dict(object_path)
+
+        if real_node[&#34;node&#34;].data_type == NodeType.DICT:
+            for sub_obj_name, sub_obj_value in value.items():
+                self.analyze_object(object_path, sub_obj_name, sub_obj_value)
+
+    def get_value_type(self, path_to_object: List[Union[Any, str]],
+                       value: Any) -&gt; NodeType:
+        &#34;&#34;&#34;
+           Get the data type of the given value within the data structure.
+
+           This method determines the NodeType of the provided value based on its data characteristics.
+           It checks whether the value is a scalar, a dictionary, a list, or None. In the case of lists,
+           it further analyzes the elements to determine if it&#39;s a list of scalars or a list of dictionaries.
+
+           Args:
+               path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+                   This list represents the sequence of keys or indices to reach the current object from the root.
+               value (Any): The value to determine the data type for.
+           &#34;&#34;&#34;
+        if is_scalar(value):
+            node_type = NodeType.SCALAR
+        elif is_dict(value):
+            node_type = NodeType.DICT
+        elif value is None:
+            node_type = NodeType.NULL
+        elif is_list(value) and len(value) &gt; 0:
+            final_element_type = self.get_value_type_of_array_elements(path_to_object, value)
+            if final_element_type == NodeType.DICT:
+                node_type = NodeType.LIST_OF_DICTS
+            elif final_element_type == NodeType.SCALAR:
+                node_type = NodeType.LIST_OF_SCALARS
+            else:
+                node_type = NodeType.LIST
+        elif is_list(value):
+            node_type = NodeType.LIST
+        else:
+            raise JsonParserException(f&#34;Unsupported data in path {path_to_object}&#34;)
+        return node_type
+
+    def get_value_type_of_array_elements(self, path_to_object: List[Any], element_list: List[Any]) -&gt; NodeType:
+        &#34;&#34;&#34;
+        Get the common data type of elements within a list in the data structure.
+
+        This method determines the common NodeType of elements in the provided list. It iterates
+        through the elements and calls the `get_value_type` method to determine the data type of
+        each element. If all elements have the same data type, it returns that data type; otherwise,
+        it raises a JsonParserException indicating that the list has inconsistent element data types.
+
+        Args:
+            path_to_object (List[Any]): The path to the current object within the data structure.
+                This list represents the sequence of keys or indices to reach the current object from the root.
+            element_list (List[Any]): The list containing elements to analyze.
+
+        Returns:
+            NodeType: The common data type of elements within the list.
+        &#34;&#34;&#34;
+        final_element_type = NodeType.NULL
+        for element in element_list:
+            element_type = self.get_value_type(path_to_object, element)
+            if element_type != final_element_type:
+                if final_element_type == NodeType.NULL or element_type == NodeType.NULL:
+                    final_element_type = final_element_type if final_element_type != NodeType.NULL else element_type
+                else:
+                    raise JsonParserException(f&#34;Value types of list {path_to_object} &#34;
+                                              f&#34;are inconsistent : {element_list}&#34;)
+        return final_element_type
+
+    def _perform_node_type_upgrade(self, node, expected_type, real_type):
+        &#34;&#34;&#34;
+        Upgrade the data type of a node in the node hierarchy.
+
+        This method upgrades the data type of the provided node to the expected data type based
+        on the comparison of the current data type (`real_type`) and the expected data type
+        (`expected_type`). The method checks for specific scenarios where upgrading the data type
+        is possible, such as converting a NodeType.LIST to NodeType.LIST_OF_SCALARS or
+        NodeType.LIST_OF_DICTS.
+
+        Args:
+            node: The node object to upgrade in the node hierarchy.
+            expected_type (NodeType): The expected data type of the node.
+            real_type (NodeType): The current data type of the node.
+        &#34;&#34;&#34;
+        if expected_type == NodeType.NULL:
+            self.upgrade_node_type(node, real_type)
+        elif expected_type == NodeType.LIST and real_type == NodeType.LIST_OF_SCALARS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.LIST_OF_DICTS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.SCALAR:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.DICT:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.DICT and real_type == NodeType.LIST_OF_DICTS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.DICT and real_type in NodeType.LIST:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.SCALAR and real_type == NodeType.LIST_OF_SCALARS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.SCALAR and real_type == NodeType.LIST:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+
+    @staticmethod
+    def _check_node_type_upgrade(node, expected_type, real_type):
+        &#34;&#34;&#34;
+        Check if upgrading the data type of a node is compatible.
+
+        This method checks whether upgrading the data type of the provided node to the expected
+        data type is a compatible operation. It analyzes the current data type (`real_type`) and
+        the expected data type (`expected_type`) and determines if the upgrade scenario is supported.
+
+        Args:
+            node: The node object to check for data type upgrade compatibility.
+            expected_type (NodeType): The expected data type of the node.
+            real_type (NodeType): The current data type of the node.
+
+        Returns:
+            bool: True if the data type upgrade is compatible; otherwise, raises a JsonParserException.
+
+        &#34;&#34;&#34;
+        varying_node_types = [expected_type, real_type]
+
+        one_type_is_dict = NodeType.DICT in varying_node_types
+        one_type_is_scalar = NodeType.SCALAR in varying_node_types
+        one_type_is_list_of_scalars = NodeType.LIST_OF_SCALARS in varying_node_types
+        one_type_is_list_of_dicts = NodeType.LIST_OF_DICTS in varying_node_types
+
+        if one_type_is_dict and one_type_is_scalar:
+            is_compatible = False
+        elif one_type_is_dict and one_type_is_list_of_scalars:
+            is_compatible = False
+        elif one_type_is_scalar and one_type_is_list_of_dicts:
+            is_compatible = False
+        elif one_type_is_list_of_scalars and one_type_is_list_of_dicts:
+            is_compatible = False
+        else:
+            is_compatible = True
+
+        if not is_compatible:
+            raise JsonParserException(f&#34;Incompatible types of {expected_type} and {real_type} &#34;
+                                      f&#34;in node_path {node.path}&#34;)
+        return True
+
+    def update_with_table_mapping(self, table_mapping: TableMapping, parent_path: Optional[List] = None) -&gt; None:
+        if not parent_path:
+            parent_path = []
+
+        self._process_column_mappings(table_mapping, parent_path)
+        self._process_user_data_mappings(table_mapping, parent_path)
+        self._process_child_table_mappings(table_mapping, parent_path)
+
+    def get_node_dict(self, path_to_object: List, parent_path: List = None) -&gt; Dict:
+        if parent_path:
+            path_to_object = parent_path + path_to_object
+        if len(path_to_object) &gt; 0:
+            node = self.node_hierarchy.get(&#34;children&#34;).get(path_to_object[0], {})
+        else:
+            node = self.node_hierarchy
+        if len(path_to_object) &gt; 1:
+            for path_step in path_to_object[1:]:
+                node = node.get(&#34;children&#34;).get(path_step, {})
+        return node or None
+
+    def add_node(self, path_to_object: List[str], value_type: NodeType, force_type: bool = False,
+                 destination_name: Optional[str] = None,
+                 is_primary_key: bool = False, default_value: Optional[str] = None) -&gt; Dict[str, Node]:
+        def recursive_add(node_dict, path, value_node):
+            if len(path) == 1:
+                node_dict[path[0]] = value_node
+            else:
+                first_level = path[0]
+                if first_level not in node_dict:
+                    node_dict[first_level] = {&#34;children&#34;: {}}
+                recursive_add(node_dict[first_level][&#34;children&#34;], path[1:], value_node)
+
+        parent_name = None
+        if len(path_to_object) &gt; 1:
+            parent_node = self.get_node_dict(path_to_object[:-1])
+            if parent_node.get(&#34;node&#34;).data_type == NodeType.DICT:
+                parent_name = parent_node.get(&#34;node&#34;).header_name
+
+        new_node = {&#34;node&#34;: Node(path_to_object, path_to_object[-1], value_type,
+                                 parent_name=parent_name, force_type=force_type, destination_name=destination_name,
+                                 is_primary_key=is_primary_key, default_value=default_value),
+                    &#34;children&#34;: {}}
+
+        # Start the recursive addition
+        recursive_add(self.node_hierarchy[&#34;children&#34;], path_to_object, new_node)
+
+        return new_node
+
+    def upgrade_node_type_recursive(self, hierarchy, path, new_node_type):
+        if len(path) == 1:
+            hierarchy[&#34;children&#34;][path[0]][&#34;node&#34;].data_type = new_node_type
+        else:
+            next_level = hierarchy[&#34;children&#34;][path[0]]
+            self.upgrade_node_type_recursive(next_level, path[1:], new_node_type)
+
+    def upgrade_node_type(self, node, new_node_type):
+        node_dict_to_update = self.get_node_dict(node.path)
+
+        node_dict_to_update[&#34;node&#34;].data_type = new_node_type
+
+        self.upgrade_node_type_recursive(self.node_hierarchy, node.path, new_node_type)
+
+    @staticmethod
+    def create_path_to_child_object(parent_path: List[str], child_name: str) -&gt; List[str]:
+        new_path = copy.copy(parent_path)
+        new_path.append(child_name)
+        return new_path
+
+    @staticmethod
+    def is_nested_node_name(node_name: str) -&gt; bool:
+        return &#34;.&#34; in node_name
+
+    def get_column_types(self, path: List[str]) -&gt; Dict[str, Tuple[NodeType, bool]]:
+        nodes = self.get_node_dict(path)
+        if not nodes:
+            return {}
+        headers = {}
+        for node in nodes.get(&#34;children&#34;):
+            decoded_name = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_name
+
+            data_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_type
+            force_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).force_type
+            headers[decoded_name] = (data_type, force_type)
+        return headers
+
+    def get_table_name(self, path: List[str]) -&gt; str:
+        name = self.root_name
+        for p in path:
+            name += f&#34;_{p}&#34;
+        return name
+
+    def _process_column_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for column_name in table_mapping.column_mappings:
+            if self.is_nested_node_name(column_name):
+                self._process_nested_column_mapping(column_name, parent_path, table_mapping)
+            else:
+                self._process_column_mapping(column_name, parent_path, table_mapping)
+
+    def _process_column_mapping(self, column_name: str, parent_path: List[str],
+                                table_mapping: TableMapping) -&gt; None:
+        path = self.create_path_to_child_object(parent_path, column_name)
+
+        force_type = column_name in table_mapping.force_types
+        is_primary_key = column_name in table_mapping.primary_keys
+        destination_name = table_mapping.column_mappings.get(column_name)
+
+        self.add_node(path, NodeType.SCALAR, force_type=force_type, destination_name=destination_name,
+                      is_primary_key=is_primary_key)
+
+    def _process_nested_column_mapping(self, column_name: str, parent_path: List[Any],
+                                       table_mapping: TableMapping) -&gt; None:
+        split_name = column_name.split(&#34;.&#34;)
+        paths_added = []
+
+        for i, item in enumerate(split_name):
+            paths_added.append(item)
+            node = self.get_node_dict(paths_added, parent_path)
+            if not node:
+                path = parent_path.copy()
+                path.extend(paths_added)
+                force_type = column_name in table_mapping.force_types
+                is_primary_key = column_name in table_mapping.primary_keys
+                destination_name = table_mapping.column_mappings.get(column_name)
+
+                node_type = NodeType.DICT if i + 1 != len(split_name) else NodeType.SCALAR
+                self.add_node(path, node_type, force_type=force_type, destination_name=destination_name,
+                              is_primary_key=is_primary_key)
+
+    def _process_user_data_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for user_data_name, default_value in table_mapping.user_data.items():
+            path = parent_path + [user_data_name]
+            self.add_node(path, NodeType.SCALAR, destination_name=user_data_name, default_value=default_value)
+
+    def _process_child_table_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for child_table in table_mapping.child_tables:
+            path = parent_path.copy()
+            path.append(child_table)
+            self.add_node(path, NodeType.LIST)
+            self.update_with_table_mapping(table_mapping.child_tables.get(child_table), path)
+
+    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None) -&gt; Dict:
+        if not node_hierarchy:
+            node_hierarchy = self.node_hierarchy
+        table_name = node_hierarchy.get(&#34;node&#34;).header_name
+
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+        for child in node_hierarchy.get(&#34;children&#34;):
+            (child_columns, child_child_tables, child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_hierarchy, child)
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+        return {&#34;table_name&#34;: table_name,
+                &#34;column_mappings&#34;: columns,
+                &#34;primary_keys&#34;: primary_keys,
+                &#34;force_types&#34;: force_types,
+                &#34;child_tables&#34;: child_tables}
+
+    def _analyze_child_node_mapping(self, node_hierarchy, child_name):
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+
+        child_node = node_hierarchy.get(&#34;children&#34;).get(child_name).get(&#34;node&#34;)
+        if child_node.data_type == NodeType.SCALAR:
+            columns[child_name] = child_node.header_name
+            if child_node.force_type:
+                force_types.append(child_name)
+            if child_node.is_primary_key:
+                primary_keys.append(child_name)
+
+        if child_node.data_type in [NodeType.LIST, NodeType.LIST_OF_SCALARS, NodeType.LIST_OF_DICTS]:
+            child_tables[child_name] = self._get_table_mapping_of_node_hierarchy(
+                node_hierarchy=node_hierarchy.get(&#34;children&#34;).get(child_name))
+
+        if child_node.data_type == NodeType.DICT:
+            (child_columns,
+             child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._get_table_mapping_of_dict_node(node_hierarchy.get(&#34;children&#34;).get(child_name))
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+
+        return columns, child_tables, primary_keys, force_types
+
+    def _get_table_mapping_of_dict_node(self, node_thing):
+        dict_node_name = node_thing.get(&#34;node&#34;).data_name
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+        for child in node_thing.get(&#34;children&#34;):
+            (child_columns, child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_thing, child)
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+
+        primary_keys = self.add_prefix_to_list_items(primary_keys, dict_node_name + &#34;.&#34;)
+        force_types = self.add_prefix_to_list_items(force_types, dict_node_name + &#34;.&#34;)
+        columns = self.add_prefix_to_dict_keys(columns, dict_node_name + &#34;.&#34;)
+        child_tables = self.add_prefix_to_dict_keys(child_tables, dict_node_name + &#34;.&#34;)
+        return columns, child_tables, primary_keys, force_types
+
+    def get_column_mappings_at_path(self, node_path: List[str]) -&gt; Dict[str, str]:
+        headers = {}
+        node_data = self.get_node_dict(node_path) or {}
+        if &#34;node&#34; in node_data:
+            node_type = node_data.get(&#34;node&#34;).data_type
+            if node_type == NodeType.SCALAR:
+                headers[&#34;.&#34;.join(node_data.get(&#34;node&#34;).path)] = node_data.get(&#34;node&#34;).header_name
+
+        for node_name, data in node_data.get(&#34;children&#34;).items():
+            if data.get(&#34;node&#34;).data_type == NodeType.DICT:
+                ch = self.get_column_mappings_at_path(self.create_path_to_child_object(node_path, node_name))
+                headers.update(ch)
+            elif data.get(&#34;node&#34;).data_type == NodeType.LIST:
+                continue
+            else:
+                headers[&#34;.&#34;.join(data.get(&#34;node&#34;).path)] = data.get(&#34;node&#34;).header_name
+
+        return headers
+
+    @staticmethod
+    def add_prefix_to_list_items(input_list, prefix):
+        return [prefix + item for item in input_list]
+
+    @staticmethod
+    def add_prefix_to_dict_keys(input_dict, prefix):
+        return {prefix + key: value for key, value in input_dict.items()}</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="keboola.json_to_csv.analyzer.Analyzer"><code class="flex name class">
+<span>class <span class="ident">Analyzer</span></span>
+<span>(</span><span>table_mapping: Optional[<a title="keboola.json_to_csv.mapping.TableMapping" href="mapping.html#keboola.json_to_csv.mapping.TableMapping">TableMapping</a>] = None, root_name: Optional[str] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The Analyzer class is designed to analyze a data structure and build a node hierarchy
+that represents the structure and data types of the objects within it. It can be used
+to create mappings for tabular data and handle complex nested structures.</p>
+<p>The Analyzer works based on a node hierarchy, where each node represents an object or
+a field in the data structure. The hierarchy is built by analyzing the provided data
+using the <code>analyze_object</code> method, or by having it be initialized by a predefined table
+mapping by the user.</p>
+<p>The Analyzer supports different data types, such as dictionaries, lists, scalars, and
+nested structures. It can handle various scenarios, including lists of dictionaries,
+lists of scalars, and more. The data types are represented using the <code>NodeType</code> enum.</p>
+<p>To use the Analyzer, you can initialize an instance with an optional root name and
+TableMapping. The TableMapping helps to specify the mapping of the data structure to
+tabular data. Then, call the <code>analyze_object</code> method to analyze each object within
+the data structure. The <code>get_mapping_dict_fom_structure</code> method can be used to get
+the resulting mapping dictionary.</p>
+<p>The class also provides methods to upgrade node data types and get column mappings at
+specific paths in the hierarchy.</p>
+<p>Initialize the Analyzer object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>table_mapping</code></strong> :&ensp;<code>Optional[TableMapping]</code></dt>
+<dd>The TableMapping object to use for the initialization of the
+node_hierarchy</dd>
+<dt><strong><code>root_name</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>The root name for the data structure (optional).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Analyzer:
+    &#34;&#34;&#34;
+    The Analyzer class is designed to analyze a data structure and build a node hierarchy
+    that represents the structure and data types of the objects within it. It can be used
+    to create mappings for tabular data and handle complex nested structures.
+
+    The Analyzer works based on a node hierarchy, where each node represents an object or
+    a field in the data structure. The hierarchy is built by analyzing the provided data
+    using the `analyze_object` method, or by having it be initialized by a predefined table
+    mapping by the user.
+
+    The Analyzer supports different data types, such as dictionaries, lists, scalars, and
+    nested structures. It can handle various scenarios, including lists of dictionaries,
+    lists of scalars, and more. The data types are represented using the `NodeType` enum.
+
+    To use the Analyzer, you can initialize an instance with an optional root name and
+    TableMapping. The TableMapping helps to specify the mapping of the data structure to
+    tabular data. Then, call the `analyze_object` method to analyze each object within
+    the data structure. The `get_mapping_dict_fom_structure` method can be used to get
+    the resulting mapping dictionary.
+
+    The class also provides methods to upgrade node data types and get column mappings at
+    specific paths in the hierarchy.
+
+    &#34;&#34;&#34;
+
+    def __init__(self,
+                 table_mapping: Optional[TableMapping] = None,
+                 root_name: Optional[str] = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialize the Analyzer object.
+
+        Args:
+            table_mapping (Optional[TableMapping]): The TableMapping object to use for the initialization of the
+                                                    node_hierarchy
+            root_name (Optional[str]): The root name for the data structure (optional).
+        &#34;&#34;&#34;
+
+        self.root_name = root_name
+        self.node_hierarchy = {&#34;children&#34;: {}, &#34;node&#34;: Node([], root_name, NodeType.LIST)}
+
+        if table_mapping:
+            self.update_with_table_mapping(table_mapping, None)
+
+    def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -&gt; None:
+        &#34;&#34;&#34;
+            Analyzes an object within the data structure and updates the node hierarchy accordingly.
+
+            This method is a recursive function that analyzes each object and its nested objects
+            within the data structure. It updates the node hierarchy with the appropriate data types
+            and mappings for each object.
+
+            Args:
+                path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+                    This list represents the sequence of keys or indices to reach the current object from the root.
+                name (str): The name of the current object. In the case of dictionaries, it represents the key name.
+                    In the case of lists, it represents the index.
+                value (Any): The value of the current object. It can be a scalar, dictionary, list, or None..
+            &#34;&#34;&#34;
+
+        object_path = self.create_path_to_child_object(path_to_object, name)
+
+        expected_node = self.get_node_dict(object_path)
+        if not expected_node:
+            real_type = self.get_value_type(path_to_object, value)
+            real_node = self.add_node(object_path, real_type)
+        else:
+            real_type = self.get_value_type(path_to_object, value)
+            expected_type = expected_node.get(&#34;node&#34;).data_type
+            if real_type != expected_type and not expected_node.get(&#34;node&#34;).force_type:
+                if self._check_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type):
+                    self._perform_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type)
+            real_node = self.get_node_dict(object_path)
+
+        if real_node[&#34;node&#34;].data_type == NodeType.DICT:
+            for sub_obj_name, sub_obj_value in value.items():
+                self.analyze_object(object_path, sub_obj_name, sub_obj_value)
+
+    def get_value_type(self, path_to_object: List[Union[Any, str]],
+                       value: Any) -&gt; NodeType:
+        &#34;&#34;&#34;
+           Get the data type of the given value within the data structure.
+
+           This method determines the NodeType of the provided value based on its data characteristics.
+           It checks whether the value is a scalar, a dictionary, a list, or None. In the case of lists,
+           it further analyzes the elements to determine if it&#39;s a list of scalars or a list of dictionaries.
+
+           Args:
+               path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+                   This list represents the sequence of keys or indices to reach the current object from the root.
+               value (Any): The value to determine the data type for.
+           &#34;&#34;&#34;
+        if is_scalar(value):
+            node_type = NodeType.SCALAR
+        elif is_dict(value):
+            node_type = NodeType.DICT
+        elif value is None:
+            node_type = NodeType.NULL
+        elif is_list(value) and len(value) &gt; 0:
+            final_element_type = self.get_value_type_of_array_elements(path_to_object, value)
+            if final_element_type == NodeType.DICT:
+                node_type = NodeType.LIST_OF_DICTS
+            elif final_element_type == NodeType.SCALAR:
+                node_type = NodeType.LIST_OF_SCALARS
+            else:
+                node_type = NodeType.LIST
+        elif is_list(value):
+            node_type = NodeType.LIST
+        else:
+            raise JsonParserException(f&#34;Unsupported data in path {path_to_object}&#34;)
+        return node_type
+
+    def get_value_type_of_array_elements(self, path_to_object: List[Any], element_list: List[Any]) -&gt; NodeType:
+        &#34;&#34;&#34;
+        Get the common data type of elements within a list in the data structure.
+
+        This method determines the common NodeType of elements in the provided list. It iterates
+        through the elements and calls the `get_value_type` method to determine the data type of
+        each element. If all elements have the same data type, it returns that data type; otherwise,
+        it raises a JsonParserException indicating that the list has inconsistent element data types.
+
+        Args:
+            path_to_object (List[Any]): The path to the current object within the data structure.
+                This list represents the sequence of keys or indices to reach the current object from the root.
+            element_list (List[Any]): The list containing elements to analyze.
+
+        Returns:
+            NodeType: The common data type of elements within the list.
+        &#34;&#34;&#34;
+        final_element_type = NodeType.NULL
+        for element in element_list:
+            element_type = self.get_value_type(path_to_object, element)
+            if element_type != final_element_type:
+                if final_element_type == NodeType.NULL or element_type == NodeType.NULL:
+                    final_element_type = final_element_type if final_element_type != NodeType.NULL else element_type
+                else:
+                    raise JsonParserException(f&#34;Value types of list {path_to_object} &#34;
+                                              f&#34;are inconsistent : {element_list}&#34;)
+        return final_element_type
+
+    def _perform_node_type_upgrade(self, node, expected_type, real_type):
+        &#34;&#34;&#34;
+        Upgrade the data type of a node in the node hierarchy.
+
+        This method upgrades the data type of the provided node to the expected data type based
+        on the comparison of the current data type (`real_type`) and the expected data type
+        (`expected_type`). The method checks for specific scenarios where upgrading the data type
+        is possible, such as converting a NodeType.LIST to NodeType.LIST_OF_SCALARS or
+        NodeType.LIST_OF_DICTS.
+
+        Args:
+            node: The node object to upgrade in the node hierarchy.
+            expected_type (NodeType): The expected data type of the node.
+            real_type (NodeType): The current data type of the node.
+        &#34;&#34;&#34;
+        if expected_type == NodeType.NULL:
+            self.upgrade_node_type(node, real_type)
+        elif expected_type == NodeType.LIST and real_type == NodeType.LIST_OF_SCALARS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.LIST_OF_DICTS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.SCALAR:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.LIST and real_type == NodeType.DICT:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.DICT and real_type == NodeType.LIST_OF_DICTS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.DICT and real_type in NodeType.LIST:
+            self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
+        elif expected_type == NodeType.SCALAR and real_type == NodeType.LIST_OF_SCALARS:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+        elif expected_type == NodeType.SCALAR and real_type == NodeType.LIST:
+            self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
+
+    @staticmethod
+    def _check_node_type_upgrade(node, expected_type, real_type):
+        &#34;&#34;&#34;
+        Check if upgrading the data type of a node is compatible.
+
+        This method checks whether upgrading the data type of the provided node to the expected
+        data type is a compatible operation. It analyzes the current data type (`real_type`) and
+        the expected data type (`expected_type`) and determines if the upgrade scenario is supported.
+
+        Args:
+            node: The node object to check for data type upgrade compatibility.
+            expected_type (NodeType): The expected data type of the node.
+            real_type (NodeType): The current data type of the node.
+
+        Returns:
+            bool: True if the data type upgrade is compatible; otherwise, raises a JsonParserException.
+
+        &#34;&#34;&#34;
+        varying_node_types = [expected_type, real_type]
+
+        one_type_is_dict = NodeType.DICT in varying_node_types
+        one_type_is_scalar = NodeType.SCALAR in varying_node_types
+        one_type_is_list_of_scalars = NodeType.LIST_OF_SCALARS in varying_node_types
+        one_type_is_list_of_dicts = NodeType.LIST_OF_DICTS in varying_node_types
+
+        if one_type_is_dict and one_type_is_scalar:
+            is_compatible = False
+        elif one_type_is_dict and one_type_is_list_of_scalars:
+            is_compatible = False
+        elif one_type_is_scalar and one_type_is_list_of_dicts:
+            is_compatible = False
+        elif one_type_is_list_of_scalars and one_type_is_list_of_dicts:
+            is_compatible = False
+        else:
+            is_compatible = True
+
+        if not is_compatible:
+            raise JsonParserException(f&#34;Incompatible types of {expected_type} and {real_type} &#34;
+                                      f&#34;in node_path {node.path}&#34;)
+        return True
+
+    def update_with_table_mapping(self, table_mapping: TableMapping, parent_path: Optional[List] = None) -&gt; None:
+        if not parent_path:
+            parent_path = []
+
+        self._process_column_mappings(table_mapping, parent_path)
+        self._process_user_data_mappings(table_mapping, parent_path)
+        self._process_child_table_mappings(table_mapping, parent_path)
+
+    def get_node_dict(self, path_to_object: List, parent_path: List = None) -&gt; Dict:
+        if parent_path:
+            path_to_object = parent_path + path_to_object
+        if len(path_to_object) &gt; 0:
+            node = self.node_hierarchy.get(&#34;children&#34;).get(path_to_object[0], {})
+        else:
+            node = self.node_hierarchy
+        if len(path_to_object) &gt; 1:
+            for path_step in path_to_object[1:]:
+                node = node.get(&#34;children&#34;).get(path_step, {})
+        return node or None
+
+    def add_node(self, path_to_object: List[str], value_type: NodeType, force_type: bool = False,
+                 destination_name: Optional[str] = None,
+                 is_primary_key: bool = False, default_value: Optional[str] = None) -&gt; Dict[str, Node]:
+        def recursive_add(node_dict, path, value_node):
+            if len(path) == 1:
+                node_dict[path[0]] = value_node
+            else:
+                first_level = path[0]
+                if first_level not in node_dict:
+                    node_dict[first_level] = {&#34;children&#34;: {}}
+                recursive_add(node_dict[first_level][&#34;children&#34;], path[1:], value_node)
+
+        parent_name = None
+        if len(path_to_object) &gt; 1:
+            parent_node = self.get_node_dict(path_to_object[:-1])
+            if parent_node.get(&#34;node&#34;).data_type == NodeType.DICT:
+                parent_name = parent_node.get(&#34;node&#34;).header_name
+
+        new_node = {&#34;node&#34;: Node(path_to_object, path_to_object[-1], value_type,
+                                 parent_name=parent_name, force_type=force_type, destination_name=destination_name,
+                                 is_primary_key=is_primary_key, default_value=default_value),
+                    &#34;children&#34;: {}}
+
+        # Start the recursive addition
+        recursive_add(self.node_hierarchy[&#34;children&#34;], path_to_object, new_node)
+
+        return new_node
+
+    def upgrade_node_type_recursive(self, hierarchy, path, new_node_type):
+        if len(path) == 1:
+            hierarchy[&#34;children&#34;][path[0]][&#34;node&#34;].data_type = new_node_type
+        else:
+            next_level = hierarchy[&#34;children&#34;][path[0]]
+            self.upgrade_node_type_recursive(next_level, path[1:], new_node_type)
+
+    def upgrade_node_type(self, node, new_node_type):
+        node_dict_to_update = self.get_node_dict(node.path)
+
+        node_dict_to_update[&#34;node&#34;].data_type = new_node_type
+
+        self.upgrade_node_type_recursive(self.node_hierarchy, node.path, new_node_type)
+
+    @staticmethod
+    def create_path_to_child_object(parent_path: List[str], child_name: str) -&gt; List[str]:
+        new_path = copy.copy(parent_path)
+        new_path.append(child_name)
+        return new_path
+
+    @staticmethod
+    def is_nested_node_name(node_name: str) -&gt; bool:
+        return &#34;.&#34; in node_name
+
+    def get_column_types(self, path: List[str]) -&gt; Dict[str, Tuple[NodeType, bool]]:
+        nodes = self.get_node_dict(path)
+        if not nodes:
+            return {}
+        headers = {}
+        for node in nodes.get(&#34;children&#34;):
+            decoded_name = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_name
+
+            data_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_type
+            force_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).force_type
+            headers[decoded_name] = (data_type, force_type)
+        return headers
+
+    def get_table_name(self, path: List[str]) -&gt; str:
+        name = self.root_name
+        for p in path:
+            name += f&#34;_{p}&#34;
+        return name
+
+    def _process_column_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for column_name in table_mapping.column_mappings:
+            if self.is_nested_node_name(column_name):
+                self._process_nested_column_mapping(column_name, parent_path, table_mapping)
+            else:
+                self._process_column_mapping(column_name, parent_path, table_mapping)
+
+    def _process_column_mapping(self, column_name: str, parent_path: List[str],
+                                table_mapping: TableMapping) -&gt; None:
+        path = self.create_path_to_child_object(parent_path, column_name)
+
+        force_type = column_name in table_mapping.force_types
+        is_primary_key = column_name in table_mapping.primary_keys
+        destination_name = table_mapping.column_mappings.get(column_name)
+
+        self.add_node(path, NodeType.SCALAR, force_type=force_type, destination_name=destination_name,
+                      is_primary_key=is_primary_key)
+
+    def _process_nested_column_mapping(self, column_name: str, parent_path: List[Any],
+                                       table_mapping: TableMapping) -&gt; None:
+        split_name = column_name.split(&#34;.&#34;)
+        paths_added = []
+
+        for i, item in enumerate(split_name):
+            paths_added.append(item)
+            node = self.get_node_dict(paths_added, parent_path)
+            if not node:
+                path = parent_path.copy()
+                path.extend(paths_added)
+                force_type = column_name in table_mapping.force_types
+                is_primary_key = column_name in table_mapping.primary_keys
+                destination_name = table_mapping.column_mappings.get(column_name)
+
+                node_type = NodeType.DICT if i + 1 != len(split_name) else NodeType.SCALAR
+                self.add_node(path, node_type, force_type=force_type, destination_name=destination_name,
+                              is_primary_key=is_primary_key)
+
+    def _process_user_data_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for user_data_name, default_value in table_mapping.user_data.items():
+            path = parent_path + [user_data_name]
+            self.add_node(path, NodeType.SCALAR, destination_name=user_data_name, default_value=default_value)
+
+    def _process_child_table_mappings(self, table_mapping: TableMapping, parent_path: List[str]) -&gt; None:
+        for child_table in table_mapping.child_tables:
+            path = parent_path.copy()
+            path.append(child_table)
+            self.add_node(path, NodeType.LIST)
+            self.update_with_table_mapping(table_mapping.child_tables.get(child_table), path)
+
+    def _get_table_mapping_of_node_hierarchy(self, node_hierarchy=None) -&gt; Dict:
+        if not node_hierarchy:
+            node_hierarchy = self.node_hierarchy
+        table_name = node_hierarchy.get(&#34;node&#34;).header_name
+
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+        for child in node_hierarchy.get(&#34;children&#34;):
+            (child_columns, child_child_tables, child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_hierarchy, child)
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+        return {&#34;table_name&#34;: table_name,
+                &#34;column_mappings&#34;: columns,
+                &#34;primary_keys&#34;: primary_keys,
+                &#34;force_types&#34;: force_types,
+                &#34;child_tables&#34;: child_tables}
+
+    def _analyze_child_node_mapping(self, node_hierarchy, child_name):
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+
+        child_node = node_hierarchy.get(&#34;children&#34;).get(child_name).get(&#34;node&#34;)
+        if child_node.data_type == NodeType.SCALAR:
+            columns[child_name] = child_node.header_name
+            if child_node.force_type:
+                force_types.append(child_name)
+            if child_node.is_primary_key:
+                primary_keys.append(child_name)
+
+        if child_node.data_type in [NodeType.LIST, NodeType.LIST_OF_SCALARS, NodeType.LIST_OF_DICTS]:
+            child_tables[child_name] = self._get_table_mapping_of_node_hierarchy(
+                node_hierarchy=node_hierarchy.get(&#34;children&#34;).get(child_name))
+
+        if child_node.data_type == NodeType.DICT:
+            (child_columns,
+             child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._get_table_mapping_of_dict_node(node_hierarchy.get(&#34;children&#34;).get(child_name))
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+
+        return columns, child_tables, primary_keys, force_types
+
+    def _get_table_mapping_of_dict_node(self, node_thing):
+        dict_node_name = node_thing.get(&#34;node&#34;).data_name
+        primary_keys = []
+        force_types = []
+        columns = {}
+        child_tables = {}
+        for child in node_thing.get(&#34;children&#34;):
+            (child_columns, child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_thing, child)
+            columns.update(child_columns)
+            child_tables.update(child_child_tables)
+            force_types.extend(child_force_types)
+            primary_keys.extend(child_primary_keys)
+
+        primary_keys = self.add_prefix_to_list_items(primary_keys, dict_node_name + &#34;.&#34;)
+        force_types = self.add_prefix_to_list_items(force_types, dict_node_name + &#34;.&#34;)
+        columns = self.add_prefix_to_dict_keys(columns, dict_node_name + &#34;.&#34;)
+        child_tables = self.add_prefix_to_dict_keys(child_tables, dict_node_name + &#34;.&#34;)
+        return columns, child_tables, primary_keys, force_types
+
+    def get_column_mappings_at_path(self, node_path: List[str]) -&gt; Dict[str, str]:
+        headers = {}
+        node_data = self.get_node_dict(node_path) or {}
+        if &#34;node&#34; in node_data:
+            node_type = node_data.get(&#34;node&#34;).data_type
+            if node_type == NodeType.SCALAR:
+                headers[&#34;.&#34;.join(node_data.get(&#34;node&#34;).path)] = node_data.get(&#34;node&#34;).header_name
+
+        for node_name, data in node_data.get(&#34;children&#34;).items():
+            if data.get(&#34;node&#34;).data_type == NodeType.DICT:
+                ch = self.get_column_mappings_at_path(self.create_path_to_child_object(node_path, node_name))
+                headers.update(ch)
+            elif data.get(&#34;node&#34;).data_type == NodeType.LIST:
+                continue
+            else:
+                headers[&#34;.&#34;.join(data.get(&#34;node&#34;).path)] = data.get(&#34;node&#34;).header_name
+
+        return headers
+
+    @staticmethod
+    def add_prefix_to_list_items(input_list, prefix):
+        return [prefix + item for item in input_list]
+
+    @staticmethod
+    def add_prefix_to_dict_keys(input_dict, prefix):
+        return {prefix + key: value for key, value in input_dict.items()}</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_dict_keys"><code class="name flex">
+<span>def <span class="ident">add_prefix_to_dict_keys</span></span>(<span>input_dict, prefix)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def add_prefix_to_dict_keys(input_dict, prefix):
+    return {prefix + key: value for key, value in input_dict.items()}</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_list_items"><code class="name flex">
+<span>def <span class="ident">add_prefix_to_list_items</span></span>(<span>input_list, prefix)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def add_prefix_to_list_items(input_list, prefix):
+    return [prefix + item for item in input_list]</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.create_path_to_child_object"><code class="name flex">
+<span>def <span class="ident">create_path_to_child_object</span></span>(<span>parent_path: List[str], child_name: str) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def create_path_to_child_object(parent_path: List[str], child_name: str) -&gt; List[str]:
+    new_path = copy.copy(parent_path)
+    new_path.append(child_name)
+    return new_path</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.is_nested_node_name"><code class="name flex">
+<span>def <span class="ident">is_nested_node_name</span></span>(<span>node_name: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def is_nested_node_name(node_name: str) -&gt; bool:
+    return &#34;.&#34; in node_name</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.add_node"><code class="name flex">
+<span>def <span class="ident">add_node</span></span>(<span>self, path_to_object: List[str], value_type: <a title="keboola.json_to_csv.node.NodeType" href="node.html#keboola.json_to_csv.node.NodeType">NodeType</a>, force_type: bool = False, destination_name: Optional[str] = None, is_primary_key: bool = False, default_value: Optional[str] = None) ‑> Dict[str, <a title="keboola.json_to_csv.node.Node" href="node.html#keboola.json_to_csv.node.Node">Node</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_node(self, path_to_object: List[str], value_type: NodeType, force_type: bool = False,
+             destination_name: Optional[str] = None,
+             is_primary_key: bool = False, default_value: Optional[str] = None) -&gt; Dict[str, Node]:
+    def recursive_add(node_dict, path, value_node):
+        if len(path) == 1:
+            node_dict[path[0]] = value_node
+        else:
+            first_level = path[0]
+            if first_level not in node_dict:
+                node_dict[first_level] = {&#34;children&#34;: {}}
+            recursive_add(node_dict[first_level][&#34;children&#34;], path[1:], value_node)
+
+    parent_name = None
+    if len(path_to_object) &gt; 1:
+        parent_node = self.get_node_dict(path_to_object[:-1])
+        if parent_node.get(&#34;node&#34;).data_type == NodeType.DICT:
+            parent_name = parent_node.get(&#34;node&#34;).header_name
+
+    new_node = {&#34;node&#34;: Node(path_to_object, path_to_object[-1], value_type,
+                             parent_name=parent_name, force_type=force_type, destination_name=destination_name,
+                             is_primary_key=is_primary_key, default_value=default_value),
+                &#34;children&#34;: {}}
+
+    # Start the recursive addition
+    recursive_add(self.node_hierarchy[&#34;children&#34;], path_to_object, new_node)
+
+    return new_node</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.analyze_object"><code class="name flex">
+<span>def <span class="ident">analyze_object</span></span>(<span>self, path_to_object: List[Union[Any, str]], name: str, value: Any) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Analyzes an object within the data structure and updates the node hierarchy accordingly.</p>
+<p>This method is a recursive function that analyzes each object and its nested objects
+within the data structure. It updates the node hierarchy with the appropriate data types
+and mappings for each object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path_to_object</code></strong> :&ensp;<code>List[Union[Any, str]]</code></dt>
+<dd>The path to the current object within the data structure.
+This list represents the sequence of keys or indices to reach the current object from the root.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the current object. In the case of dictionaries, it represents the key name.
+In the case of lists, it represents the index.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>Any</code></dt>
+<dd>The value of the current object. It can be a scalar, dictionary, list, or None..</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -&gt; None:
+    &#34;&#34;&#34;
+        Analyzes an object within the data structure and updates the node hierarchy accordingly.
+
+        This method is a recursive function that analyzes each object and its nested objects
+        within the data structure. It updates the node hierarchy with the appropriate data types
+        and mappings for each object.
+
+        Args:
+            path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+                This list represents the sequence of keys or indices to reach the current object from the root.
+            name (str): The name of the current object. In the case of dictionaries, it represents the key name.
+                In the case of lists, it represents the index.
+            value (Any): The value of the current object. It can be a scalar, dictionary, list, or None..
+        &#34;&#34;&#34;
+
+    object_path = self.create_path_to_child_object(path_to_object, name)
+
+    expected_node = self.get_node_dict(object_path)
+    if not expected_node:
+        real_type = self.get_value_type(path_to_object, value)
+        real_node = self.add_node(object_path, real_type)
+    else:
+        real_type = self.get_value_type(path_to_object, value)
+        expected_type = expected_node.get(&#34;node&#34;).data_type
+        if real_type != expected_type and not expected_node.get(&#34;node&#34;).force_type:
+            if self._check_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type):
+                self._perform_node_type_upgrade(expected_node.get(&#39;node&#39;), expected_type, real_type)
+        real_node = self.get_node_dict(object_path)
+
+    if real_node[&#34;node&#34;].data_type == NodeType.DICT:
+        for sub_obj_name, sub_obj_value in value.items():
+            self.analyze_object(object_path, sub_obj_name, sub_obj_value)</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_column_mappings_at_path"><code class="name flex">
+<span>def <span class="ident">get_column_mappings_at_path</span></span>(<span>self, node_path: List[str]) ‑> Dict[str, str]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_column_mappings_at_path(self, node_path: List[str]) -&gt; Dict[str, str]:
+    headers = {}
+    node_data = self.get_node_dict(node_path) or {}
+    if &#34;node&#34; in node_data:
+        node_type = node_data.get(&#34;node&#34;).data_type
+        if node_type == NodeType.SCALAR:
+            headers[&#34;.&#34;.join(node_data.get(&#34;node&#34;).path)] = node_data.get(&#34;node&#34;).header_name
+
+    for node_name, data in node_data.get(&#34;children&#34;).items():
+        if data.get(&#34;node&#34;).data_type == NodeType.DICT:
+            ch = self.get_column_mappings_at_path(self.create_path_to_child_object(node_path, node_name))
+            headers.update(ch)
+        elif data.get(&#34;node&#34;).data_type == NodeType.LIST:
+            continue
+        else:
+            headers[&#34;.&#34;.join(data.get(&#34;node&#34;).path)] = data.get(&#34;node&#34;).header_name
+
+    return headers</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_column_types"><code class="name flex">
+<span>def <span class="ident">get_column_types</span></span>(<span>self, path: List[str]) ‑> Dict[str, Tuple[<a title="keboola.json_to_csv.node.NodeType" href="node.html#keboola.json_to_csv.node.NodeType">NodeType</a>, bool]]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_column_types(self, path: List[str]) -&gt; Dict[str, Tuple[NodeType, bool]]:
+    nodes = self.get_node_dict(path)
+    if not nodes:
+        return {}
+    headers = {}
+    for node in nodes.get(&#34;children&#34;):
+        decoded_name = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_name
+
+        data_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).data_type
+        force_type = nodes.get(&#34;children&#34;)[node].get(&#34;node&#34;).force_type
+        headers[decoded_name] = (data_type, force_type)
+    return headers</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_node_dict"><code class="name flex">
+<span>def <span class="ident">get_node_dict</span></span>(<span>self, path_to_object: List, parent_path: List = None) ‑> Dict</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_node_dict(self, path_to_object: List, parent_path: List = None) -&gt; Dict:
+    if parent_path:
+        path_to_object = parent_path + path_to_object
+    if len(path_to_object) &gt; 0:
+        node = self.node_hierarchy.get(&#34;children&#34;).get(path_to_object[0], {})
+    else:
+        node = self.node_hierarchy
+    if len(path_to_object) &gt; 1:
+        for path_step in path_to_object[1:]:
+            node = node.get(&#34;children&#34;).get(path_step, {})
+    return node or None</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_table_name"><code class="name flex">
+<span>def <span class="ident">get_table_name</span></span>(<span>self, path: List[str]) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_table_name(self, path: List[str]) -&gt; str:
+    name = self.root_name
+    for p in path:
+        name += f&#34;_{p}&#34;
+    return name</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_value_type"><code class="name flex">
+<span>def <span class="ident">get_value_type</span></span>(<span>self, path_to_object: List[Union[Any, str]], value: Any) ‑> <a title="keboola.json_to_csv.node.NodeType" href="node.html#keboola.json_to_csv.node.NodeType">NodeType</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the data type of the given value within the data structure.</p>
+<p>This method determines the NodeType of the provided value based on its data characteristics.
+It checks whether the value is a scalar, a dictionary, a list, or None. In the case of lists,
+it further analyzes the elements to determine if it's a list of scalars or a list of dictionaries.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path_to_object</code></strong> :&ensp;<code>List[Union[Any, str]]</code></dt>
+<dd>The path to the current object within the data structure.
+This list represents the sequence of keys or indices to reach the current object from the root.</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>Any</code></dt>
+<dd>The value to determine the data type for.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_value_type(self, path_to_object: List[Union[Any, str]],
+                   value: Any) -&gt; NodeType:
+    &#34;&#34;&#34;
+       Get the data type of the given value within the data structure.
+
+       This method determines the NodeType of the provided value based on its data characteristics.
+       It checks whether the value is a scalar, a dictionary, a list, or None. In the case of lists,
+       it further analyzes the elements to determine if it&#39;s a list of scalars or a list of dictionaries.
+
+       Args:
+           path_to_object (List[Union[Any, str]]): The path to the current object within the data structure.
+               This list represents the sequence of keys or indices to reach the current object from the root.
+           value (Any): The value to determine the data type for.
+       &#34;&#34;&#34;
+    if is_scalar(value):
+        node_type = NodeType.SCALAR
+    elif is_dict(value):
+        node_type = NodeType.DICT
+    elif value is None:
+        node_type = NodeType.NULL
+    elif is_list(value) and len(value) &gt; 0:
+        final_element_type = self.get_value_type_of_array_elements(path_to_object, value)
+        if final_element_type == NodeType.DICT:
+            node_type = NodeType.LIST_OF_DICTS
+        elif final_element_type == NodeType.SCALAR:
+            node_type = NodeType.LIST_OF_SCALARS
+        else:
+            node_type = NodeType.LIST
+    elif is_list(value):
+        node_type = NodeType.LIST
+    else:
+        raise JsonParserException(f&#34;Unsupported data in path {path_to_object}&#34;)
+    return node_type</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_value_type_of_array_elements"><code class="name flex">
+<span>def <span class="ident">get_value_type_of_array_elements</span></span>(<span>self, path_to_object: List[Any], element_list: List[Any]) ‑> <a title="keboola.json_to_csv.node.NodeType" href="node.html#keboola.json_to_csv.node.NodeType">NodeType</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the common data type of elements within a list in the data structure.</p>
+<p>This method determines the common NodeType of elements in the provided list. It iterates
+through the elements and calls the <code>get_value_type</code> method to determine the data type of
+each element. If all elements have the same data type, it returns that data type; otherwise,
+it raises a JsonParserException indicating that the list has inconsistent element data types.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path_to_object</code></strong> :&ensp;<code>List[Any]</code></dt>
+<dd>The path to the current object within the data structure.
+This list represents the sequence of keys or indices to reach the current object from the root.</dd>
+<dt><strong><code>element_list</code></strong> :&ensp;<code>List[Any]</code></dt>
+<dd>The list containing elements to analyze.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>NodeType</code></dt>
+<dd>The common data type of elements within the list.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_value_type_of_array_elements(self, path_to_object: List[Any], element_list: List[Any]) -&gt; NodeType:
+    &#34;&#34;&#34;
+    Get the common data type of elements within a list in the data structure.
+
+    This method determines the common NodeType of elements in the provided list. It iterates
+    through the elements and calls the `get_value_type` method to determine the data type of
+    each element. If all elements have the same data type, it returns that data type; otherwise,
+    it raises a JsonParserException indicating that the list has inconsistent element data types.
+
+    Args:
+        path_to_object (List[Any]): The path to the current object within the data structure.
+            This list represents the sequence of keys or indices to reach the current object from the root.
+        element_list (List[Any]): The list containing elements to analyze.
+
+    Returns:
+        NodeType: The common data type of elements within the list.
+    &#34;&#34;&#34;
+    final_element_type = NodeType.NULL
+    for element in element_list:
+        element_type = self.get_value_type(path_to_object, element)
+        if element_type != final_element_type:
+            if final_element_type == NodeType.NULL or element_type == NodeType.NULL:
+                final_element_type = final_element_type if final_element_type != NodeType.NULL else element_type
+            else:
+                raise JsonParserException(f&#34;Value types of list {path_to_object} &#34;
+                                          f&#34;are inconsistent : {element_list}&#34;)
+    return final_element_type</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.update_with_table_mapping"><code class="name flex">
+<span>def <span class="ident">update_with_table_mapping</span></span>(<span>self, table_mapping: <a title="keboola.json_to_csv.mapping.TableMapping" href="mapping.html#keboola.json_to_csv.mapping.TableMapping">TableMapping</a>, parent_path: Optional[List] = None) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_with_table_mapping(self, table_mapping: TableMapping, parent_path: Optional[List] = None) -&gt; None:
+    if not parent_path:
+        parent_path = []
+
+    self._process_column_mappings(table_mapping, parent_path)
+    self._process_user_data_mappings(table_mapping, parent_path)
+    self._process_child_table_mappings(table_mapping, parent_path)</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type"><code class="name flex">
+<span>def <span class="ident">upgrade_node_type</span></span>(<span>self, node, new_node_type)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def upgrade_node_type(self, node, new_node_type):
+    node_dict_to_update = self.get_node_dict(node.path)
+
+    node_dict_to_update[&#34;node&#34;].data_type = new_node_type
+
+    self.upgrade_node_type_recursive(self.node_hierarchy, node.path, new_node_type)</code></pre>
+</details>
+</dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type_recursive"><code class="name flex">
+<span>def <span class="ident">upgrade_node_type_recursive</span></span>(<span>self, hierarchy, path, new_node_type)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def upgrade_node_type_recursive(self, hierarchy, path, new_node_type):
+    if len(path) == 1:
+        hierarchy[&#34;children&#34;][path[0]][&#34;node&#34;].data_type = new_node_type
+    else:
+        next_level = hierarchy[&#34;children&#34;][path[0]]
+        self.upgrade_node_type_recursive(next_level, path[1:], new_node_type)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="keboola.json_to_csv" href="index.html">keboola.json_to_csv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="keboola.json_to_csv.analyzer.Analyzer" href="#keboola.json_to_csv.analyzer.Analyzer">Analyzer</a></code></h4>
+<ul class="">
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.add_node" href="#keboola.json_to_csv.analyzer.Analyzer.add_node">add_node</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_dict_keys" href="#keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_dict_keys">add_prefix_to_dict_keys</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_list_items" href="#keboola.json_to_csv.analyzer.Analyzer.add_prefix_to_list_items">add_prefix_to_list_items</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.analyze_object" href="#keboola.json_to_csv.analyzer.Analyzer.analyze_object">analyze_object</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.create_path_to_child_object" href="#keboola.json_to_csv.analyzer.Analyzer.create_path_to_child_object">create_path_to_child_object</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_column_mappings_at_path" href="#keboola.json_to_csv.analyzer.Analyzer.get_column_mappings_at_path">get_column_mappings_at_path</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_column_types" href="#keboola.json_to_csv.analyzer.Analyzer.get_column_types">get_column_types</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_node_dict" href="#keboola.json_to_csv.analyzer.Analyzer.get_node_dict">get_node_dict</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_table_name" href="#keboola.json_to_csv.analyzer.Analyzer.get_table_name">get_table_name</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_value_type" href="#keboola.json_to_csv.analyzer.Analyzer.get_value_type">get_value_type</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_value_type_of_array_elements" href="#keboola.json_to_csv.analyzer.Analyzer.get_value_type_of_array_elements">get_value_type_of_array_elements</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.is_nested_node_name" href="#keboola.json_to_csv.analyzer.Analyzer.is_nested_node_name">is_nested_node_name</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.update_with_table_mapping" href="#keboola.json_to_csv.analyzer.Analyzer.update_with_table_mapping">update_with_table_mapping</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type" href="#keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type">upgrade_node_type</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type_recursive" href="#keboola.json_to_csv.analyzer.Analyzer.upgrade_node_type_recursive">upgrade_node_type_recursive</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
