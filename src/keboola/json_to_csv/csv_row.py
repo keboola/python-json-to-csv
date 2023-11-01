@@ -9,6 +9,7 @@ class CsvRow:
     The class maintains a mapping between JSON keys and CSV headers, allowing for proper CSV output.
 
     """
+
     def __init__(self, column_map: Dict[str, str]) -> None:
         """
         Initialize the CsvRow with a given column mapping.
@@ -49,4 +50,3 @@ class CsvRow:
             List[str]: A list of CSV headers representing the CsvRow.
         """
         return list(self.data.keys())
-

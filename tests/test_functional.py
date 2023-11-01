@@ -3,7 +3,7 @@ import os
 import logging
 from tests.json_case_tester.case_tester import JSONCaseTester
 
-TEST_LOCATION = "../tests/test-cases"
+TEST_LOCATION = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test-cases')
 
 
 class TestJSONParser(unittest.TestCase):

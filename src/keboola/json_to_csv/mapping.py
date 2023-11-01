@@ -33,7 +33,7 @@ class TableMapping:
         self.force_types = force_types
         self.user_data = user_data
 
-    def get_table_mappings_flattened(self) -> Dict:
+    def table_mappings_flattened_by_key(self) -> Dict[str, 'TableMapping']:
         """
         Retrieve a flattened representation of the mapping structures. Returns dictionary structure where each mapping
         in the hierarchy is indexed by the table name.
@@ -49,14 +49,19 @@ class TableMapping:
         - Dict: Flattened representation of the mapping structure.
         """
 
-        def _flatten_mapping(mapping: 'TableMapping') -> Dict:
+        def _flatten_mapping(mapping: 'TableMapping', key='') -> Dict:
             flat_mappings = {}
 
             table_name = mapping.table_name
-            flat_mappings[table_name] = mapping
+            if not key:
+                key = table_name
 
-            for child_mapping in mapping.child_tables.values():
-                flat_mappings.update(_flatten_mapping(child_mapping))
+            flat_mappings[key] = mapping
+
+            for child_key, child_mapping in mapping.child_tables.items():
+                # TODO: use dynamic separator
+                key = f'{key}_{child_key}'
+                flat_mappings.update(_flatten_mapping(child_mapping, key))
 
             return flat_mappings
 

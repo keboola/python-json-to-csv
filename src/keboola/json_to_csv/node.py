@@ -95,7 +95,7 @@ class Node:
             data_type (NodeType): The data type of the node.
             parent_name (Optional[str]): The name of the parent node (if any) that contains this node (default: None).
             is_primary_key (bool): A flag indicating whether the node is a primary key (default: False).
-            force_type (bool): A flag indicating whether to not parse the data further (save it as is) (default: False).
+            force_type (bool): A flag indicating whether to not parse the data further (save it as is)(default: False).
             destination_name (Optional[str]): An alternative header name to use in the CSV output (default: None).
             default_value (Optional[str]): The default value for the node if the data is missing (default: None).
         """

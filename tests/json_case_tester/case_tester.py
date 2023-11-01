@@ -5,7 +5,7 @@ import unittest
 import logging
 from itertools import chain
 from pathlib import Path
-import src.keboola.json_to_csv as jc
+import keboola.json_to_csv as jc
 
 
 class JSONCaseTester(unittest.TestCase):

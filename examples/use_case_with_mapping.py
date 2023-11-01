@@ -46,13 +46,13 @@ mapping_dict = {
     'force_types': [],
     'child_tables': {
         'addresses': {
-            'table_name': 'addresses',
+            'table_name': 'address_of_user',
             'column_mappings': {
                 'user_id': 'user_id',
                 'index': 'index',
                 'street': 'street',
                 'country': 'country',
-                'city': 'city'
+                'city': 'CITY',
             },
             'primary_keys': ['user_id', 'index'],
             'force_types': [],
@@ -73,22 +73,22 @@ mapping_dict = {
 }
 
 mapping = TableMapping.build_from_mapping_dict(mapping_dict)
-parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
+parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=False)
 parsed_data = parser.parse_data(data)
 
 # KCOFAC-2624 - flatten result for debugging
-flattened_result_tables = parser.get_table_mapping().get_table_mappings_flattened()
-for mapping in flattened_result_tables:
-    print(flattened_result_tables[mapping].as_dict())
+flattened_result_tables = parser.table_mapping.table_mappings_flattened_by_key()
+# now we can get result table names par key
+for key, data in parsed_data.items():
+    print(f"Data result Key: {key} has result table name: {flattened_result_tables[key].table_name}")
 
 # KCOFAC-2623 - store mapping in statefile
-table_mapping = parser.get_table_mapping()
-
 # store in state
-mapping_dict = table_mapping.as_dict()
+mapping_dict = parser.table_mapping.as_dict()
+
 
 # restore from state
 mapping = TableMapping.build_from_mapping_dict(mapping_dict)
-parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=True)
+parser = Parser(main_table_name="user", table_mapping=mapping, analyze_further=False)
 parsed = parser.parse_data(data)
 print(parsed)

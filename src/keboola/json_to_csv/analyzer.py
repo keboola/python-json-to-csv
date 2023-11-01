@@ -1,9 +1,10 @@
-from typing import Any, Dict, List, Optional, Union, Tuple
 import copy
+from typing import Any, Dict, List, Optional, Union, Tuple
+
 from .exceptions import JsonParserException
 from .mapping import TableMapping
-from .utils import is_dict, is_list, is_scalar
 from .node import Node, NodeType
+from .utils import is_dict, is_list, is_scalar
 
 
 class Analyzer:
@@ -49,9 +50,6 @@ class Analyzer:
 
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
-
-    def get_mapping_dict_fom_structure(self) -> Dict:
-        return self._get_table_mapping_of_node_hierarchy()
 
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -> None:
         """
@@ -145,7 +143,8 @@ class Analyzer:
                 if final_element_type == NodeType.NULL or element_type == NodeType.NULL:
                     final_element_type = final_element_type if final_element_type != NodeType.NULL else element_type
                 else:
-                    raise JsonParserException(f"Value types of list {path_to_object} are inconsistent : {element_list}")
+                    raise JsonParserException(f"Value types of list {path_to_object} "
+                                              f"are inconsistent : {element_list}")
         return final_element_type
 
     def _perform_node_type_upgrade(self, node, expected_type, real_type):
@@ -231,7 +230,9 @@ class Analyzer:
         self._process_user_data_mappings(table_mapping, parent_path)
         self._process_child_table_mappings(table_mapping, parent_path)
 
-    def get_node_dict(self, path_to_object: List) -> Dict:
+    def get_node_dict(self, path_to_object: List, parent_path: List = None) -> Dict:
+        if parent_path:
+            path_to_object = parent_path + path_to_object
         if len(path_to_object) > 0:
             node = self.node_hierarchy.get("children").get(path_to_object[0], {})
         else:
@@ -337,7 +338,7 @@ class Analyzer:
 
         for i, item in enumerate(split_name):
             paths_added.append(item)
-            node = self.get_node_dict(paths_added)
+            node = self.get_node_dict(paths_added, parent_path)
             if not node:
                 path = parent_path.copy()
                 path.extend(paths_added)
@@ -365,13 +366,14 @@ class Analyzer:
         if not node_hierarchy:
             node_hierarchy = self.node_hierarchy
         table_name = node_hierarchy.get("node").header_name
+
         primary_keys = []
         force_types = []
         columns = {}
         child_tables = {}
         for child in node_hierarchy.get("children"):
-            child_columns, child_child_tables, child_primary_keys, child_force_types = self._analyze_child_node_mapping(
-                node_hierarchy, child)
+            (child_columns, child_child_tables, child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_hierarchy, child)
             columns.update(child_columns)
             child_tables.update(child_child_tables)
             force_types.extend(child_force_types)
@@ -395,12 +397,16 @@ class Analyzer:
                 force_types.append(child_name)
             if child_node.is_primary_key:
                 primary_keys.append(child_name)
+
         if child_node.data_type in [NodeType.LIST, NodeType.LIST_OF_SCALARS, NodeType.LIST_OF_DICTS]:
             child_tables[child_name] = self._get_table_mapping_of_node_hierarchy(
                 node_hierarchy=node_hierarchy.get("children").get(child_name))
+
         if child_node.data_type == NodeType.DICT:
-            child_columns, child_child_tables, child_primary_keys, child_force_types = self._get_table_mapping_of_dict_node(
-                node_hierarchy.get("children").get(child_name))
+            (child_columns,
+             child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._get_table_mapping_of_dict_node(node_hierarchy.get("children").get(child_name))
             columns.update(child_columns)
             child_tables.update(child_child_tables)
             force_types.extend(child_force_types)
@@ -415,8 +421,9 @@ class Analyzer:
         columns = {}
         child_tables = {}
         for child in node_thing.get("children"):
-            child_columns, child_child_tables, child_primary_keys, child_force_types = self._analyze_child_node_mapping(
-                node_thing, child)
+            (child_columns, child_child_tables,
+             child_primary_keys,
+             child_force_types) = self._analyze_child_node_mapping(node_thing, child)
             columns.update(child_columns)
             child_tables.update(child_child_tables)
             force_types.extend(child_force_types)
