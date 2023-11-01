@@ -4,11 +4,11 @@ from typing import Any, Dict, List, Optional, Union
 
 from .analyzer import Analyzer
 from .csv_row import CsvRow
+from .exceptions import JsonParserException
 from .mapping import TableMapping
 from .node import NodeType
 from .table import Table
 from .utils import is_dict, is_list, is_scalar
-from .exceptions import JsonParserException
 
 
 class Parser:
@@ -115,14 +115,16 @@ class Parser:
         """
         Parse the input JSON data recursively and generate Table objects.
 
-        This private method is responsible for recursively parsing the input JSON data and converting it into Table objects.
+        This private method is responsible for recursively parsing the input JSON data and converting it
+        into Table objects.
         The parsed CSV data is stored in the `_csv_file_results` dictionary as Table objects.
 
         Parameters:
             input_data (List[Dict]): The JSON data to parse.
             node_path (Optional[List[str]]): The path to the current node being analyzed (default: None).
             file_name (Optional[str]): The name of the CSV file (table) to associate the parsed data (default: None).
-            parent_data (Optional[Dict[str, str]]): A dictionary containing parent-level data to be merged with the current row.
+            parent_data (Optional[Dict[str, str]]): A dictionary containing parent-level data to be merged
+            with the current row.
 
         Returns:
             Dict[str, Table]: A dictionary containing Table objects representing the parsed CSV data.
@@ -184,8 +186,9 @@ class Parser:
         """
             Parse a field of JSON data based on its data type and other properties.
 
-            This private method is responsible for parsing a field of JSON data based on its data type, node path, and other
-            properties like primary keys and force type. It then stores the parsed value in the corresponding CSV row.
+            This private method is responsible for parsing a field of JSON data based on its data type, node path,
+            and other properties like primary keys and force type.
+            It then stores the parsed value in the corresponding CSV row.
 
             Parameters:
                 row (Dict[str, Any]): The JSON data for the current row.
@@ -201,7 +204,8 @@ class Parser:
                 - If the column data is None, it tries to fetch the default value from the node in the analyzer.
                 - For lists and dictionaries, it calls the corresponding private methods to handle them recursively.
                 - For scalars or when force type is True, it sets the value directly in the CSV row.
-                - The `whole_path` variable is used for setting the value in the CSV row with the correct key (dot-separated).
+                - The `whole_path` variable is used for setting the value in the CSV row with the correct key
+                  (dot-separated).
 
             """
 
@@ -234,8 +238,8 @@ class Parser:
         Parse a list field of JSON data.
 
         This private method is responsible for parsing a list field of JSON data, handling array elements, and
-        recursively processing the list items. It creates separate tables for each nested list, maintains the parent-child
-        relationship in the CSV data, and applies primary key values if available.
+        recursively processing the list items. It creates separate tables for each nested list,
+        maintains the parent-child relationship in the CSV data, and applies primary key values if available.
 
         Parameters:
             column_data (Any): The JSON data for the current column (list field).
