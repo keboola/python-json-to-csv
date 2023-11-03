@@ -65,7 +65,6 @@ class Parser:
         &#34;&#34;&#34;
         self.analyze_further = analyze_further
         self.main_table_name = main_table_name
-        self.table_mapping = table_mapping
 
         self._csv_file_results = {}
         self.analyzer = Analyzer(root_name=main_table_name, table_mapping=table_mapping)
@@ -104,6 +103,11 @@ class Parser:
         data_to_parse = self._get_parseable_data_from_input_data(input_data, root_name)
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
+
+    @property
+    def table_mapping(self) -&gt; TableMapping:
+        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
+        return TableMapping.build_from_mapping_dict(table_mapping_dict)
 
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],
@@ -384,7 +388,6 @@ in the table mapping.</p></div>
         &#34;&#34;&#34;
         self.analyze_further = analyze_further
         self.main_table_name = main_table_name
-        self.table_mapping = table_mapping
 
         self._csv_file_results = {}
         self.analyzer = Analyzer(root_name=main_table_name, table_mapping=table_mapping)
@@ -423,6 +426,11 @@ in the table mapping.</p></div>
         data_to_parse = self._get_parseable_data_from_input_data(input_data, root_name)
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
+
+    @property
+    def table_mapping(self) -&gt; TableMapping:
+        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
+        return TableMapping.build_from_mapping_dict(table_mapping_dict)
 
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],
@@ -647,6 +655,22 @@ in the table mapping.</p></div>
 
         return current_table_primary_keys</code></pre>
 </details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="keboola.json_to_csv.parser.Parser.table_mapping"><code class="name">var <span class="ident">table_mapping</span> : <a title="keboola.json_to_csv.mapping.TableMapping" href="mapping.html#keboola.json_to_csv.mapping.TableMapping">TableMapping</a></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def table_mapping(self) -&gt; TableMapping:
+    table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
+    return TableMapping.build_from_mapping_dict(table_mapping_dict)</code></pre>
+</details>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
 <dt id="keboola.json_to_csv.parser.Parser.parse_data"><code class="name flex">
@@ -739,6 +763,7 @@ root_name (Optional[str]): The root node name to use for parsing the data (defau
 <ul class="">
 <li><code><a title="keboola.json_to_csv.parser.Parser.parse_data" href="#keboola.json_to_csv.parser.Parser.parse_data">parse_data</a></code></li>
 <li><code><a title="keboola.json_to_csv.parser.Parser.parse_data_to_csv" href="#keboola.json_to_csv.parser.Parser.parse_data_to_csv">parse_data_to_csv</a></code></li>
+<li><code><a title="keboola.json_to_csv.parser.Parser.table_mapping" href="#keboola.json_to_csv.parser.Parser.table_mapping">table_mapping</a></code></li>
 </ul>
 </li>
 </ul>

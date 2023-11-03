@@ -79,6 +79,9 @@ class Analyzer:
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
 
+    def get_mapping_dict_fom_structure(self) -&gt; Dict:
+        return self._get_table_mapping_of_node_hierarchy()
+
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -&gt; None:
         &#34;&#34;&#34;
             Analyzes an object within the data structure and updates the node hierarchy accordingly.
@@ -578,6 +581,9 @@ node_hierarchy</dd>
 
         if table_mapping:
             self.update_with_table_mapping(table_mapping, None)
+
+    def get_mapping_dict_fom_structure(self) -&gt; Dict:
+        return self._get_table_mapping_of_node_hierarchy()
 
     def analyze_object(self, path_to_object: List[Union[Any, str]], name: str, value: Any) -&gt; None:
         &#34;&#34;&#34;
@@ -1201,6 +1207,19 @@ In the case of lists, it represents the index.</dd>
     return headers</code></pre>
 </details>
 </dd>
+<dt id="keboola.json_to_csv.analyzer.Analyzer.get_mapping_dict_fom_structure"><code class="name flex">
+<span>def <span class="ident">get_mapping_dict_fom_structure</span></span>(<span>self) ‑> Dict</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mapping_dict_fom_structure(self) -&gt; Dict:
+    return self._get_table_mapping_of_node_hierarchy()</code></pre>
+</details>
+</dd>
 <dt id="keboola.json_to_csv.analyzer.Analyzer.get_node_dict"><code class="name flex">
 <span>def <span class="ident">get_node_dict</span></span>(<span>self, path_to_object: List, parent_path: List = None) ‑> Dict</span>
 </code></dt>
@@ -1429,6 +1448,7 @@ This list represents the sequence of keys or indices to reach the current object
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.create_path_to_child_object" href="#keboola.json_to_csv.analyzer.Analyzer.create_path_to_child_object">create_path_to_child_object</a></code></li>
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_column_mappings_at_path" href="#keboola.json_to_csv.analyzer.Analyzer.get_column_mappings_at_path">get_column_mappings_at_path</a></code></li>
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_column_types" href="#keboola.json_to_csv.analyzer.Analyzer.get_column_types">get_column_types</a></code></li>
+<li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_mapping_dict_fom_structure" href="#keboola.json_to_csv.analyzer.Analyzer.get_mapping_dict_fom_structure">get_mapping_dict_fom_structure</a></code></li>
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_node_dict" href="#keboola.json_to_csv.analyzer.Analyzer.get_node_dict">get_node_dict</a></code></li>
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_table_name" href="#keboola.json_to_csv.analyzer.Analyzer.get_table_name">get_table_name</a></code></li>
 <li><code><a title="keboola.json_to_csv.analyzer.Analyzer.get_value_type" href="#keboola.json_to_csv.analyzer.Analyzer.get_value_type">get_value_type</a></code></li>
