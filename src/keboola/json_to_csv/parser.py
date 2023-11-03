@@ -37,7 +37,6 @@ class Parser:
         """
         self.analyze_further = analyze_further
         self.main_table_name = main_table_name
-        self.table_mapping = table_mapping
 
         self._csv_file_results = {}
         self.analyzer = Analyzer(root_name=main_table_name, table_mapping=table_mapping)
@@ -76,6 +75,11 @@ class Parser:
         data_to_parse = self._get_parseable_data_from_input_data(input_data, root_name)
         self._parse_data(data_to_parse)
         return {key: self._csv_file_results[key].rows for key in self._csv_file_results}
+
+    @property
+    def table_mapping(self) -> TableMapping:
+        table_mapping_dict = self.analyzer.get_mapping_dict_fom_structure()
+        return TableMapping.build_from_mapping_dict(table_mapping_dict)
 
     @staticmethod
     def _get_parseable_data_from_input_data(input_data: Union[Dict, List[Dict]],

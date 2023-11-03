@@ -28,4 +28,5 @@ data = [
 parser = Parser(main_table_name="user")
 parsed_data = parser.parse_data(data)
 
-mapping = parser.table_mapping
+mapping = parser.table_mapping.as_dict()
+print(mapping)
