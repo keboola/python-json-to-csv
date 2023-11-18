@@ -60,8 +60,8 @@ class TableMapping:
 
             for child_key, child_mapping in mapping.child_tables.items():
                 # TODO: use dynamic separator
-                key = f'{key}_{child_key}'
-                flat_mappings.update(_flatten_mapping(child_mapping, key))
+                new_key = f'{key}_{child_key}'
+                flat_mappings.update(_flatten_mapping(child_mapping, new_key))
 
             return flat_mappings
 
