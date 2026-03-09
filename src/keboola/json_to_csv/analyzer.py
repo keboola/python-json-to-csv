@@ -177,7 +177,7 @@ class Analyzer:
             self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
         elif expected_type == NodeType.DICT and real_type == NodeType.LIST_OF_DICTS:
             self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
-        elif expected_type == NodeType.DICT and real_type in NodeType.LIST:
+        elif expected_type == NodeType.DICT and real_type == NodeType.LIST:
             self.upgrade_node_type(node, NodeType.LIST_OF_DICTS)
         elif expected_type == NodeType.SCALAR and real_type == NodeType.LIST_OF_SCALARS:
             self.upgrade_node_type(node, NodeType.LIST_OF_SCALARS)
