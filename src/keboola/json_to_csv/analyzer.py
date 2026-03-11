@@ -84,7 +84,7 @@ class Analyzer:
                     self._perform_node_type_upgrade(expected_node.get('node'), expected_type, real_type)
             real_node = self.get_node_dict(object_path)
 
-        if real_node["node"].data_type == NodeType.DICT:
+        if real_node["node"].data_type == NodeType.DICT and value is not None:
             for sub_obj_name, sub_obj_value in value.items():
                 self.analyze_object(object_path, sub_obj_name, sub_obj_value)
 
